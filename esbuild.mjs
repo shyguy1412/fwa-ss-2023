@@ -13,6 +13,7 @@ const backendContext = await context({
     'process.env.NODE_ENV': "'production'",
   },
   external: ['express'],
+  tsconfig: 'src/backend/tsconfig.json',
   logLevel: 'info'
 });
 
