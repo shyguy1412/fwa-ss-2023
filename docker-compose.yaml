@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: fwa_ss23
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: mypassword
+
+volumes:
+  db_data:
