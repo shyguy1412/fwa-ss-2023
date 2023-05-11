@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: My API
+  version: 1.0.0
+  description: API documentation for My API
+servers:
+  - url: https://localhost.com/api/v1
+
+tags:
+  - name: User
+  - name: Product
+  - name: Order
+
+paths:
+  /hello_world:
+    get:
+      responses:
+        '200':
+          description: Alles OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  hello:
+                    type: string
+                    example: world
+  /register:
+    post:
+      tags: 
+        - User
+      requestBody:
+        content:
+          application/json: 
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "409":
+          $ref: "#/components/responses/409_dupe"
+        "201":
+          $ref: "#/components/responses/201"
+
+components:
+  responses:
+    "201":
+      description: Operation Erfolgreich
+    
+    "409_dupe":
+      description: Duplikation
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                type: integer
+                example: 409
+              error:
+                type: string
+                example: Duplicate Record
+
+  schemas:
+    User:
+      properties:
+        name:
+          type: string
+          example: Heinz Rüdinger
+        city:
+          type: string
+          example: Musterstadt
+        street:
+          type: string
+          example: Musterstraße 5a
+        postcode:
+          type: string
+          example: 12345
+                                
