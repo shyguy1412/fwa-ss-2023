@@ -7,10 +7,6 @@ loadConfigFile();
 const app = express();
 const port = Number.parseInt(process.env.EXPRESS_PORT ?? '') || 3000;
 
-app.listen(port, () => {
-  console.log(`✅ Express server listening on port ${port}`);
-});
-
 //bind to local UPD socket for ipc
 const ipcServer = createSocket("udp4");
 
@@ -24,6 +20,11 @@ ipcServer.on("message", function (msg) {
 
 // Binding server with port
 ipcServer.bind(port + 1, 'localhost');
+
+app.listen(port, () => {
+  console.log(`✅ Express server listening on port ${port}`);
+  ipcServer.send('started', port - 1, 'localhost');
+});
 // (async function () {
 //   const jane = await User.create({
 //     name: 'Homer',
