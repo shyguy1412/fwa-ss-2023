@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently -k -s first \"nodemon dist/main.js\" \"node esbuild.mjs --watch\" \"npm run ng:watch\"",
     "start": "node dist/main.js",
-    "prestart": "npm run ng:build && esbuild.mjs",
+    "prestart": "npm run ng:build && node esbuild.mjs",
     "preinstall": "chmod 700 webshop.mjs",
     "generate:api": "openapi-generator-cli generate -g typescript-fetch -i specification/swagger.yaml -o src/frontend/lib/api_client",
     "predev": "node esbuild.mjs",
