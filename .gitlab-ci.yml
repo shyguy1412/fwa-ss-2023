@@ -1,0 +1,5 @@
+deploy-prod:
+  stage: deploy
+  script:
+    - npx webshop start --install
+  environment: production
