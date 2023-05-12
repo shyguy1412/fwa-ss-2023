@@ -2,14 +2,19 @@
   "name": "fwa-ss-2023",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "webshop.mjs",
   "scripts": {
     "dev": "concurrently -k -s first \"nodemon dist/main.js\" \"node esbuild.mjs --watch\" \"npm run ng:watch\"",
+    "start": "node dist/main.js",
+    "prestart": "npm run ng:build && esbuild.mjs",
     "generate:api": "openapi-generator-cli generate -g typescript-fetch -i specification/swagger.yaml -o src/frontend/lib/api_client",
     "predev": "node esbuild.mjs",
     "ng:build": "ng build",
     "ng:watch": "ng build --watch --configuration development",
     "ng:test": "ng test"
+  },
+  "bin": {
+    "webshop": "webshop.mjs"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +29,7 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "@openapitools/openapi-generator-cli": "^2.6.0",
+    "commander": "^10.0.1",
     "dotenv": "^16.0.3",
     "esbuild": "^0.17.18",
     "express": "^4.18.2",
