@@ -49,9 +49,20 @@ programm.parse();
 
 
 function spawnServerAndExit() {
-  spawn(`${npm}`, ['start'], {
+  const ipcSocket = createSocket('udp4');
+  const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
+  const serverProcess = spawn(`${npm}`, ['start'], {
     cwd: __dirname,
-    detached: true
   });
-  process.exit();
+
+  ipcSocket.on("message", function (msg) {
+    if (msg.toString('utf-8') == 'started')
+      process.exit();
+  });
+
+  ipcSocket.bind(port - 1, 'localhost');
+
+  serverProcess.stdout.on('data', data => process.stdout.write(data));
+  serverProcess.stderr.on('data', data => process.stderr.write(data));
+  serverProcess.unref();
 }
