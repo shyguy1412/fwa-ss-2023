@@ -42,8 +42,6 @@ async function loadRoutes(): Promise<Route[]> {
     } catch (_) { }
   }
 
-  console.log(routes);
-
   return routes;
 }
 
