@@ -32,12 +32,6 @@ programm
   .action(() => {
     const ipcSocket = createSocket('udp4');
     const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
-    const serverProcess = spawn(`${npm}`, ['start'], {
-      cwd: __dirname,
-      stdio: ['inherit', 'inherit', 'inherit']
-    });
-
-    serverProcess.addListener('exit', () => process.exit());
 
     ipcSocket.on("message", function (msg) {
       if (msg.toString('utf-8') == 'started')
@@ -46,6 +40,12 @@ programm
 
     ipcSocket.bind(port - 1, 'localhost');
 
+    const serverProcess = spawn(`${npm}`, ['start'], {
+      cwd: __dirname,
+      stdio: ['inherit', 'inherit', 'inherit']
+    });
+
+    serverProcess.addListener('exit', () => process.exit());
     serverProcess.unref();
   });
 
