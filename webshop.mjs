@@ -22,45 +22,58 @@ const { config } = await import('dotenv');
 
 config();
 
-const programm = new Command();
+const program = new Command();
 
 
-programm
+program
   .command('start')
   .description('starts the server')
   .option('--install', 'runs npm install before starting', false)
   .action(() => {
-    const ipcSocket = createSocket('udp4');
-    const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
-
-    ipcSocket.on("message", function (msg) {
-      console.log('Message from server: ' + msg);
-      if (msg.toString('utf-8') == 'started')
-        process.exit();
-    });
-
-    ipcSocket.bind(port - 1, 'localhost');
-    console.log('IPC listening on port: ' + (port-1));
-
-    const serverProcess = spawn(`${npm}`, ['start'], {
-      cwd: __dirname,
-      stdio: ['inherit', 'inherit', 'inherit']
-    });
-
-    serverProcess.addListener('exit', () => process.exit());
-    serverProcess.unref();
+    // if (install === true) {
+    //   const installProcess = spawn(`${npm}`, ['i']);
+    //   installProcess.stdout.on('data', data => process.stdout.write(data));
+    //   installProcess.stderr.on('data', data => process.stderr.write(data));
+    //   installProcess.addListener('exit', () => {
+    //     spawnServerAndExit();
+    //   });
+    // } else {
+      spawnServerAndExit();
+    // }
   });
 
-programm
+program
   .command('stop')
   .description('stops the server')
   .action(() => {
     const ipcSocket = createSocket('udp4');
     const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
     ipcSocket.send('exit', port + 1, 'localhost', (err) => {
-      console.log(err ?? 'Stopped');
+      console.log(err ?? 'EXITED');
       process.exit();
     });
   });
 
-programm.parse();
+
+
+program.parse();
+
+
+function spawnServerAndExit() {
+  const ipcSocket = createSocket('udp4');
+  const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
+  const serverProcess = spawn(`${npm}`, ['start'], {
+    cwd: __dirname,
+  });
+
+  ipcSocket.on("message", function (msg) {
+    if (msg.toString('utf-8') == 'started')
+      process.exit();
+  });
+
+  ipcSocket.bind(port - 1, 'localhost');
+
+  serverProcess.stdout.on('data', data => process.stdout.write(data));
+  serverProcess.stderr.on('data', data => process.stderr.write(data));
+  serverProcess.unref();
+}
