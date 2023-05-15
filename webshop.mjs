@@ -34,11 +34,13 @@ programm
     const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
 
     ipcSocket.on("message", function (msg) {
+      console.log('Message from server: ' + msg);
       if (msg.toString('utf-8') == 'started')
         process.exit();
     });
 
     ipcSocket.bind(port - 1, 'localhost');
+    console.log('IPC listening on port: ' + (port-1));
 
     const serverProcess = spawn(`${npm}`, ['start'], {
       cwd: __dirname,
