@@ -1,8 +1,0 @@
-deploy-prod:
-  stage: deploy
-  before_script:
-    - npm i
-    - npx webshop stop
-  script:
-    - npx webshop start
-  environment: production

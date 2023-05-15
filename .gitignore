@@ -44,3 +44,6 @@ Thumbs.db
 
 # generated api
 api_client
+
+# ci/cd
+.gitlab-ci.yml
