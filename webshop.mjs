@@ -64,6 +64,7 @@ function spawnServerAndExit() {
   const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
   const serverProcess = spawn(`${npm}`, ['start'], {
     cwd: __dirname,
+    stdio: 'inherit'
   });
 
   ipcSocket.on("message", function (msg) {
@@ -73,7 +74,7 @@ function spawnServerAndExit() {
 
   ipcSocket.bind(port - 1, 'localhost');
 
-  serverProcess.stdout.on('data', data => process.stdout.write(data));
-  serverProcess.stderr.on('data', data => process.stderr.write(data));
+  // serverProcess.stdout.on('data', data => process.stdout.write(data));
+  // serverProcess.stderr.on('data', data => process.stderr.write(data));
   serverProcess.unref();
 }
