@@ -30,16 +30,25 @@ program
   .description('starts the server')
   .option('--install', 'runs npm install before starting', false)
   .action(() => {
-    // if (install === true) {
-    //   const installProcess = spawn(`${npm}`, ['i']);
-    //   installProcess.stdout.on('data', data => process.stdout.write(data));
-    //   installProcess.stderr.on('data', data => process.stderr.write(data));
-    //   installProcess.addListener('exit', () => {
-    //     spawnServerAndExit();
-    //   });
-    // } else {
-      spawnServerAndExit();
-    // }
+    const ipcSocket = createSocket('udp4');
+    const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
+    //Process must NOT inherit stdio. This causes the CI/CD pipeline to get stuck (because why not?)
+    //even after the CLI process terminates
+    const serverProcess = spawn(`${npm}`, ['start'], {
+      cwd: __dirname,
+    });
+  
+    ipcSocket.on("message", function (msg) {
+      if (msg.toString('utf-8') == 'started')
+        process.exit();
+    });
+  
+    ipcSocket.bind(port - 1, 'localhost');
+  
+    //We still gotta get the console output tho
+    serverProcess.stdout.on('data', data => process.stdout.write(data));
+    serverProcess.stderr.on('data', data => process.stderr.write(data));
+    serverProcess.unref();
   });
 
 program
@@ -60,21 +69,5 @@ program.parse();
 
 
 function spawnServerAndExit() {
-  const ipcSocket = createSocket('udp4');
-  const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
-  const serverProcess = spawn(`${npm}`, ['start'], {
-    cwd: __dirname,
-    stdio: 'inherit'
-  });
 
-  ipcSocket.on("message", function (msg) {
-    if (msg.toString('utf-8') == 'started')
-      process.exit();
-  });
-
-  ipcSocket.bind(port - 1, 'localhost');
-
-  // serverProcess.stdout.on('data', data => process.stdout.write(data));
-  // serverProcess.stderr.on('data', data => process.stderr.write(data));
-  serverProcess.unref();
 }

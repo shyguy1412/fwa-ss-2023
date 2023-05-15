@@ -24,9 +24,8 @@ ipcSocket.bind(port + 1, 'localhost');
 app.listen(port, () => {
   console.log(`✅ Express server listening on port ${port}`);
   ipcSocket.send('started', port - 1, 'localhost');
-  console.log('Sent started message over IPC socket');
-  
 });
+
 // (async function () {
 //   const jane = await User.create({
 //     name: 'Homer',
