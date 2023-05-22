@@ -5,15 +5,23 @@ body {
     color: #444444;
 }
 
+.row
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+}
+
 a,
 a:hover {
     text-decoration: none;
     color: inherit;
 }
 
-.section-products {
+/*.section-products {
     padding: 80px 0 54px;
-}
+}*/
 
 .section-products .header {
     margin-bottom: 50px;
@@ -58,6 +66,30 @@ a:hover {
 		transform: scale(1.2,1.2) rotate(5deg);
 }
 
+.section-products #product-1 .part-1::before {
+    background: url("../../../assets/images/rosmarin.png") no-repeat center;
+    background-size: contain;
+		transition: all 0.3s;
+}
+
+.section-products #product-2 .part-1::before {
+    background: url("../../../assets/images/thyme.png") no-repeat center;
+    background-size: contain;
+		transition: all 0.3s;
+}
+
+.section-products #product-3 .part-1::before {
+    background: url("../../../assets/images/pepper.png") no-repeat center;
+    background-size: contain;
+		transition: all 0.3s;
+}
+
+.section-products #product-4 .part-1::before {
+    background: url("../../../assets/images/basil.png") no-repeat center;
+    background-size: contain;
+		transition: all 0.3s;
+}
+
 .section-products #product-5 .part-1::before {
     background: url("../../../assets/images/Trueffel.png") no-repeat center;
     background-size: contain;
@@ -70,7 +102,7 @@ a:hover {
 }
 
 .section-products #product-7 .part-1::before {
-    background: url("../../../assets/images/safran.png") no-repeat center;
+    background: url("../../../assets/images/safran2.png") no-repeat center;
     background-size: contain;
 }
 
@@ -79,8 +111,8 @@ a:hover {
     background-size: contain;
 }
 
-.section-products .single-product .part-1 .discount,    /* Rabattanzeige */
-.section-products .single-product .part-1 .new {
+.section-products .single-product .part-1 .discount,    /* discount */
+.section-products .single-product .part-1 .new {        /* Text-Style of *NEW* */
     position: absolute;
     top: 15px;
     left: 20px;
@@ -107,17 +139,17 @@ a:hover {
     transition: bottom 0.5s, opacity 0.5s;
 }
 
-.section-products .single-product:hover .part-1 ul {
+.section-products .single-product:hover .part-1 ul {    /* Icon visibility */
     bottom: 30px;
     opacity: 1;
 }
 
-.section-products .single-product .part-1 ul li {
+.section-products .single-product .part-1 ul li {   /* Icon alignment */
     display: inline-block;
     margin-right: 4px;
 }
 
-.section-products .single-product .part-1 ul li a {         /* Icons */
+.section-products .single-product .part-1 ul li a {         /* All Icons */
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -138,7 +170,7 @@ a:hover {
     font-size: 1rem;
 }
 
-.section-products .single-product .part-2 h4 {
+.section-products .single-product .part-2 h4 {  /* Price alignment */
     display: inline-block;
     font-size: 1rem;
 }
