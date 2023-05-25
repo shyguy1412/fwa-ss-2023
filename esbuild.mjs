@@ -30,7 +30,7 @@ const serverContext = await context({
   define: WATCH ? undefined : {
     'process.env.NODE_ENV': "'production'",
   },
-  external: ['express'],
+  external: ['express', 'pg-hstore'],
   tsconfig: 'src/backend/tsconfig.json',
   logLevel: 'info'
 });
