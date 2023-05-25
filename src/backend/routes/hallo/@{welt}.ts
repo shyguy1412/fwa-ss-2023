@@ -14,12 +14,13 @@ const methods = {
 
 export default async function handler(req: Request, res: Response) {
     const method = req.method ?? 'GET';
+
     if(Object.hasOwn(methods, method))
         await methods[method as keyof typeof methods](req, res);
 }
 
 async function _get(req: Request, res: Response){
-    res.status(200).json({"WAS AUCH IMMER ICH WILL": req.params.id});
+    res.status(200).json((req.params));
 }
 
 async function _post(req: Request, res: Response){
