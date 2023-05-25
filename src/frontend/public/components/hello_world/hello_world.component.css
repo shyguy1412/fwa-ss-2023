@@ -5,8 +5,6 @@ body {
     color: #444444;
 }
 
-<<<<<<< HEAD
-=======
 .row
 {
     display: flex;
@@ -15,22 +13,15 @@ body {
     align-content: space-around;
 }
 
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
 a,
 a:hover {
     text-decoration: none;
     color: inherit;
 }
 
-<<<<<<< HEAD
-.section-products {
-    padding: 80px 0 54px;
-}
-=======
 /*.section-products {
     padding: 80px 0 54px;
 }*/
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
 
 .section-products .header {
     margin-bottom: 50px;
@@ -75,8 +66,6 @@ a:hover {
 		transform: scale(1.2,1.2) rotate(5deg);
 }
 
-<<<<<<< HEAD
-=======
 .section-products #product-1 .part-1::before {
     background: url("../../../assets/images/rosmarin.png") no-repeat center;
     background-size: contain;
@@ -101,7 +90,6 @@ a:hover {
 		transition: all 0.3s;
 }
 
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
 .section-products #product-5 .part-1::before {
     background: url("../../../assets/images/Trueffel.png") no-repeat center;
     background-size: contain;
@@ -114,11 +102,7 @@ a:hover {
 }
 
 .section-products #product-7 .part-1::before {
-<<<<<<< HEAD
-    background: url("../../../assets/images/safran.png") no-repeat center;
-=======
     background: url("../../../assets/images/safran2.png") no-repeat center;
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
     background-size: contain;
 }
 
@@ -127,13 +111,8 @@ a:hover {
     background-size: contain;
 }
 
-<<<<<<< HEAD
-.section-products .single-product .part-1 .discount,    /* Rabattanzeige */
-.section-products .single-product .part-1 .new {
-=======
 .section-products .single-product .part-1 .discount,    /* discount */
 .section-products .single-product .part-1 .new {        /* Text-Style of *NEW* */
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
     position: absolute;
     top: 15px;
     left: 20px;
@@ -160,40 +139,23 @@ a:hover {
     transition: bottom 0.5s, opacity 0.5s;
 }
 
-<<<<<<< HEAD
-.section-products .single-product:hover .part-1 ul {
-=======
 .section-products .single-product:hover .part-1 ul {    /* Icon visibility */
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
     bottom: 30px;
     opacity: 1;
 }
 
-<<<<<<< HEAD
-.section-products .single-product .part-1 ul li {
-=======
 .section-products .single-product .part-1 ul li {   /* Icon alignment */
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
     display: inline-block;
     margin-right: 4px;
 }
 
-<<<<<<< HEAD
-.section-products .single-product .part-1 ul li a {         /* Icons */
-=======
 .section-products .single-product .part-1 ul li a {         /* All Icons */
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
     display: inline-block;
     width: 40px;
     height: 40px;
     line-height: 40px;
-<<<<<<< HEAD
-    background-color: #ffffff;
-    background-image: url("../../../assets/images/solid_shopping-cart.png");
-=======
     /*background-color: #ffffff;*/
     /*background-image: url("../../../assets/images/solid_shopping-cart.png");*/
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
     color: #444444;
     text-align: center;
     box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
@@ -208,11 +170,7 @@ a:hover {
     font-size: 1rem;
 }
 
-<<<<<<< HEAD
-.section-products .single-product .part-2 h4 {
-=======
 .section-products .single-product .part-2 h4 {  /* Price alignment */
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
     display: inline-block;
     font-size: 1rem;
 }
@@ -235,9 +193,6 @@ a:hover {
     transform: translateY(-50%);
 }
 
-<<<<<<< HEAD
-.section-products .single-product .part-1 ul li #cart
-=======
 .section-products .single-product .part-1 ul li a
 {
     background-color: #000000;
@@ -249,31 +204,10 @@ a:hover {
 }
 
 .section-products .single-product .part-1 ul li a i
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
 {
     background-color: #fe302f;
 }
 
-<<<<<<< HEAD
-.shopping-cart
-{
-    background-color: #fe302f;
-}
-
-.heart
-{
-    background-color: #fe302f;
-}
-
-.plus
-{
-    background-color: #fe302f;
-}
-
-.expand
-{
-    background-color: #fe302f;
-=======
 .section-products .single-product .part-1 ul li a i 
 
 {
@@ -283,7 +217,6 @@ a:hover {
 .section-products .single-product .part-1 ul li a i
 {
     background-color: #13c90a;
->>>>>>> 4556ed391b99e0785aed3b5174f83120a049d91f
 }
 
 .product_card
