@@ -1,75 +1,562 @@
 openapi: 3.0.0
 info:
-  title: My API
+  title: Webshop API
   version: 1.0.0
-  description: API documentation for My API
+  description: API for our Webshop
 servers:
-  - url: https://localhost.com/api/v1
+  - url: http://localhost:8080/api/v0
 
 tags:
   - name: User
+  - name: UI
   - name: Product
   - name: Order
 
 paths:
-  /hello_world:
+  /users:
     get:
+      tags:
+        - User
+      security:
+        - tokenAuth: []
+      summary: Get all users
       responses:
-        '200':
-          description: Alles OK
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "200":
+          description: OK
           content:
             application/json:
               schema:
-                properties:
-                  hello:
-                    type: string
-                    example: world
-  /register:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
     post:
-      tags: 
+      tags:
         - User
+      summary: Create a user
+      security:
+        - tokenAuth: []
       requestBody:
+        required: true
         content:
-          application/json: 
+          application/json:
             schema:
               $ref: "#/components/schemas/User"
       responses:
-        "409":
-          $ref: "#/components/responses/409_dupe"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
         "201":
-          $ref: "#/components/responses/201"
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /users/login:
+    post:
+      tags:
+        - User
+      summary: User login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginCredentials"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/401"
+
+  /users/{id}:
+    get:
+      tags:
+        - User
+      summary: Get a user by ID
+      security:
+        - tokenAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Not Found
+    put:
+      tags:
+        - User
+      summary: Update a user by ID
+      security:
+        - tokenAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Not Found
+
+    delete:
+      tags:
+        - User
+      summary: Delete a user by ID
+      security:
+        - tokenAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+
+  /users/me:
+    get:
+      tags:
+        - UI
+      summary: Get current user's information
+      security:
+        - cookieAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/401"
+
+    put:
+      tags:
+        - UI
+      summary: Update current user's information
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/User"
+                - type: object
+                  properties:
+                    password:
+                      type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/401"
+
+    delete:
+      tags:
+        - UI
+      summary: Delete current user's account
+      security:
+        - cookieAuth: []
+      responses:
+        "204":
+          description: No Content
+        "401":
+          $ref: "#/components/responses/401"
+
+  /users/me/orders:
+    get:
+      tags:
+        - UI
+      summary: Get orders placed by the current user
+      security:
+        - cookieAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Order"
+        "401":
+          $ref: "#/components/responses/401"
+
+  /products:
+    get:
+      tags:
+        - Product
+      summary: Get all products
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+    post:
+      tags:
+        - Product
+      summary: Create a product
+      security:
+        - tokenAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+
+  /products/{slug}:
+    get:
+      tags:
+        - Product
+      summary: Get a product by slug
+      parameters:
+        - $ref: "#/components/parameters/slug"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Not Found
+    put:
+      tags:
+        - Product
+      summary: Update a product by slug
+      security:
+        - tokenAuth: []
+      parameters:
+        - $ref: "#/components/parameters/slug"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Not Found
+    delete:
+      tags:
+        - Product
+      summary: Delete a product by slug
+      security:
+        - tokenAuth: []
+      parameters:
+        - $ref: "#/components/parameters/slug"
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+
+  /orders:
+    get:
+      tags:
+        - Order
+      summary: Get all orders
+      security:
+        - tokenAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Order"
+    post:
+      tags:
+        - Order
+      summary: Create an order
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Order"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+
+  /orders/{id}:
+    get:
+      tags:
+        - Order
+      summary: Get an order by ID
+      security:
+        - tokenAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "404":
+          description: Not Found
+    put:
+      tags:
+        - Order
+      summary: Update an order by ID
+      security:
+        - tokenAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Order"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "404":
+          description: Not Found
+    delete:
+      tags:
+        - Order
+      summary: Delete an order by ID
+      security:
+        - tokenAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: Order ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
 
 components:
   responses:
-    "201":
-      description: Operation Erfolgreich
-    
-    "409_dupe":
-      description: Duplikation
+    "401":
+      description: Unauthorized
       content:
         application/json:
           schema:
             properties:
               status:
                 type: integer
-                example: 409
+                example: 401
               error:
                 type: string
-                example: Duplicate Record
+                example: Unauthorized
+    "403":
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            properties:
+              status:
+                type: integer
+                example: 401
+              error:
+                type: string
+                example: Forbidden
+
+  parameters:
+    slug:
+      name: slug
+      in: path
+      description: Product slug
+      required: true
+      schema:
+        type: string
 
   schemas:
-    User:
+    LoginCredentials:
+      type: object
       properties:
-        name:
+        username:
           type: string
-          example: Heinz Rüdinger
-        city:
+        password:
           type: string
-          example: Musterstadt
-        street:
+      required:
+        - username
+        - password
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        first_name:
           type: string
-          example: Musterstraße 5a
+          example: Jane
+        last_name:
+          type: string
+          example: Doe
         postcode:
           type: string
-          example: 12345
-                                
+          example: 54321
+        city:
+          type: string
+          example: Atlantis
+        street:
+          type: string
+          example: Seaking Street 6
+        email:
+          type: string
+          example: jane.doe@example.com
+        phone:
+          type: string
+          example: 1-800 123456
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        product_slug:
+          type: string
+          example: fish-food
+        product_name:
+          type: string
+          example: Fish Food
+        price:
+          type: number
+          example: 5.99
+        image_url:
+          type: string
+          example: https://picsum.photos/200
+        description:
+          type: string
+          example: very tasty food for your scaley fish friends
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        shipping_method:
+          type: string
+          enum: [regular, express]
+          example: express
+        payment_method:
+          type: string
+          enum: [PayPal, Visa, Apple Pay, Google Pay]
+          example: PayPal
+        products:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/Product"
+              - type: object
+                properties:
+                  amount:
+                    type: number
+                    example: 50
+
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: webshop_jwt
+    tokenAuth:
+      type: http
+      scheme: bearer
