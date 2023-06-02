@@ -66,6 +66,27 @@ a:hover {
 		transform: scale(1.2,1.2) rotate(5deg);
 }
 
+.section-products .single-product .part-1 img:hover 
+{
+	transform: scale(1.2,1.2) rotate(5deg);
+    border-radius: 8px;
+}
+
+.section-products .single-product .part-1 img 
+{
+    max-width: 100%;    /*percentage width of the "container" not original-image size  */
+    width: 80%;
+    min-width: 10%;
+    justify-items: center;
+}
+
+.section-products .single-product .part-1
+{
+    border-radius: 10%;
+    justify-items: left;
+}
+
+/*
 .section-products #product-1 .part-1::before {
     background: url("../../../assets/images/rosmarin.png") no-repeat center;
     background-size: contain;
@@ -110,6 +131,7 @@ a:hover {
     background: url("../../../assets/images/vanille.png") no-repeat center;
     background-size: contain;
 }
+*/
 
 .section-products .single-product .part-1 .discount,    /* discount */
 .section-products .single-product .part-1 .new {        /* Text-Style of *NEW* */
@@ -197,7 +219,7 @@ a:hover {
 {
     background-color: #000000;
 }
-
+/*
 .cart
 {
     background-color: #6b3838;
@@ -217,7 +239,7 @@ a:hover {
 .section-products .single-product .part-1 ul li a i
 {
     background-color: #13c90a;
-}
+} */
 
 .product_card
 {
