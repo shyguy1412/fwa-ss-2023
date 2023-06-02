@@ -1,45 +1,45 @@
 import { sequelize } from "@/modules/sequalize";
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 
-export class User extends Model<InferAttributes<User>,InferCreationAttributes<User>>{
+
+export class Product extends Model<InferAttributes<Product>,InferCreationAttributes<Product>>{
     declare id:CreationOptional<number>;
-    declare name:string;
-    declare password:string;
-    declare city:string;
-    declare postcode:string;
-    declare street:string;
+    declare product_slug:string;
+    declare product_name:string;
+    declare price:number;
+    declare image_url:string;
+    declare description:string;
 
 
 }
 
-if (User != sequelize.models.User) {
-    User.init({
+if (Product != sequelize.models.Product) {
+    Product.init({
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
+        product_slug: {
             type: DataTypes.STRING,
             unique: true
         },
-        password: {
+        product_name: {
             type: DataTypes.STRING
         },
-        postcode: {
+        price: {
+            type: DataTypes.FLOAT
+        },
+        image_url: {
             type: DataTypes.STRING
         },
-        street: {
-            type: DataTypes.STRING
-        },
-        city: {
+        description: {
             type: DataTypes.STRING
         },
         
     }, {
         sequelize,
-        tableName: 'users',
+        tableName: 'products',
         timestamps: false
     });
-    
 }
