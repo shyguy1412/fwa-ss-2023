@@ -11,7 +11,7 @@ async function getFragmentsFromPath(dir: string) {
 }
 
 async function resolveRequestURLToModulePath(url: string) {
-  const basePath = './dist/api_routes';
+  const basePath = './dist/routes';
   const pathFragments = url.substring(1).split('/');
   const moduleFragments: string[] = [];
   const queryParams: { [key: string]: string; } = {};

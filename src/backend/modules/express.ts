@@ -1,5 +1,5 @@
 import express from 'express';
-import ShopAPI from '@/modules/ShopAPI';
+import ShopAPI from './ShopAPI';
 import path from 'path';
 
 export default function () {

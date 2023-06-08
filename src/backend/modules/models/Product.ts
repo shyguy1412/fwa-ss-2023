@@ -1,4 +1,4 @@
-import { sequelize } from "@/modules/sequalize";
+import { sequelize } from "../sequalize";
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 
 
