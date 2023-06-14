@@ -7,9 +7,19 @@ section
     background-color: rgb(255, 240, 220);
 }
 
+.section-products
+{
+    display: block;
+    width: 100%;
+    background-color: #fe302f;
+}
+
 .navbar
 {
-    position: relative;
+    display: block;
+    position: fixed;
+    width: 97.9%;
+    z-index: 10;
 }
 
 .bi
@@ -110,7 +120,8 @@ a:hover {
 */
 
 
-.section-products .single-product {
+.section-products .single-product 
+{
     margin-bottom: 26px;
 }
 
