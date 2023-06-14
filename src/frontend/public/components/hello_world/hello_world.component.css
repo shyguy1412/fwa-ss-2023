@@ -7,15 +7,54 @@ section
     background-color: rgb(255, 240, 220);
 }
 
-.nav
+.bi
 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-end;
+    height: 25px;
+    width: 25px;
 }
 
-.header {
+.icon_text
+{
+    display: flex;
+    align-items: center;
+}
+
+.navbaricontext
+{
+    font-size: 20px;
+}
+
+.navicon
+{
+    display: flex;
+}
+
+.navbar
+{
+    background-color: rgb(207, 186, 175);
+}
+
+.Header__FlexItem
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20%;
+    display: flex;
+    column-gap: 20px;
+}
+
+.Header__FlexItem--fill:last-child
+{
+    justify-content: flex-end;
+}
+
+.navbaricontext
+{
+    padding: 4px;
+}
+
+.header 
+{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

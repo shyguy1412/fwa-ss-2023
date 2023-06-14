@@ -1,34 +1,57 @@
 <section class="section-products">
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="header">
-                <nav>|-|-|</nav>
-                <h3>Featured Product</h3>
-                <h2>Popular Products</h2>
-            </div>
+    <nav class="navbar">
+        <div class="header_links_icon Header__FlexItem Header__FlexItem--fill">
+            <a href="/account" class="navicon flexdiv">
+                <span class="icon_text">
+                    <!--<i class="bi bi-person-circle" height="25px" width="25px"></i>-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    <span class="navbaricontext">Mein Konto</span> 
+                </span>
+            </a>
+            <a href="/cart" class="navicon flexdiv">
+                <span class="icon_text">
+                    <!--<i class="bi bi-cart"></i>-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                    <span class="navbaricontext">Warenkorb</span>
+                </span>
+            </a>
         </div>
-        <div class="product_container">
-           <!-- Single Product -->
-            <div *ngFor="let product of products; index as i" class="product_card" id="{{product.name}}">
-                <div class="single-product" id="{{product.name}}">
-                <!--<img src="{{product.image}}"/>-->
-                    <div class="part-1">
-                        <img src="{{product.image}}" alt="{{product.name}}"/>
-                        <span class="discount"><i class="fa-solid fa-beat">{{product.discount}}</i></span>
-                            <ul>
-                                <li><a href="#"><i class="bi bi-cart"></i></a></li> <!--<i class="bi bi-cart"></i>    <i class="fa-solid fa-cart-shopping"></i>-->
-                                <li><a href="#"><i class="bi bi-heart"></i></a></li> <!-- <i class="bi bi-heart"></i>  <i class="fa-solid fa-heart"></i>-->
-                                <li><a href="#"><i class="bi bi-patch-plus"></i></a></li> <!-- <i class="bi bi-patch-plus"> </i> <i class="fa-solid fa-plus"></i>-->
-                                <li><a href="#"><i class="bi bi-arrows-angle-expand"></i></a></li> <!-- <i class="bi bi-arrows-angle-expand"></i>  <i class="fa-solid fa-expand"></i>-->
-                            </ul>
+    </nav>
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="header">
+                        
+                        <h3>Featured Product</h3>
+                        <h2>Popular Products</h2>
                     </div>
-                    <div class="product_details">
-                        <h3 class="product-title">{{product.name}}</h3>
-                        <h4 class="product-old-price"><i class="fa-solid fa-strikethrough">{{product.oldprice}}</i></h4>
-                        <h4 class="product-price">{{product.price}}</h4>
+                </div>
+                <div class="product_container">
+                <!-- Single Product -->
+                    <div *ngFor="let product of products; index as i" class="product_card" id="{{product.name}}">
+                        <div class="single-product" id="{{product.name}}">
+                        <!--<img src="{{product.image}}"/>-->
+                            <div class="part-1">
+                                <img src="{{product.image}}" alt="{{product.name}}"/>
+                                <span class="discount"><i class="fa-solid fa-beat">{{product.discount}}</i></span>
+                                    <ul>
+                                        <li><a href="#"><i class="bi bi-cart-plus"></i></a></li> <!--<i class="bi bi-cart"></i>    <i class="fa-solid fa-cart-shopping"></i>-->
+                                        <li><a href="#"><i class="bi bi-heart"></i></a></li> <!-- <i class="bi bi-heart"></i>  <i class="fa-solid fa-heart"></i>-->
+                                        <li><a href="#"><i class="bi bi-patch-plus"></i></a></li> <!-- <i class="bi bi-patch-plus"> </i> <i class="fa-solid fa-plus"></i>-->
+                                        <li><a href="#"><i class="bi bi-arrows-angle-expand"></i></a></li> <!-- <i class="bi bi-arrows-angle-expand"></i>  <i class="fa-solid fa-expand"></i>-->
+                                    </ul>
+                            </div>
+                            <div class="product_details">
+                                <h3 class="product-title">{{product.name}}</h3>
+                                <h4 class="product-old-price"><i class="fa-solid fa-strikethrough">{{product.oldprice}}</i></h4>
+                                <h4 class="product-price">{{product.price}}</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 </section>
