@@ -10,7 +10,7 @@ section
 {
     display: block;
     width: 100%;
-    background-color: #fe302f;
+    background-color: #c9c9c9;
 }
 
 .navbar
@@ -242,22 +242,25 @@ a:hover {
 
 .section-products .single-product .part-1 ul {
     position: absolute;
+    display: inline-block;
+    align-self: flex-end;
     bottom: -41px;
-    left: 20px;
     margin: 0;
     padding: 0;
     list-style: none;
+    background-color: rgb(240, 240, 240, 0.7);
     opacity: 0;
     transition: bottom 0.5s, opacity 0.5s;
 }
 
 .section-products .single-product:hover .part-1 ul {    /* Icon visibility */
-    bottom: 30px;
+    bottom: 20px;
     opacity: 1;
 }
 
 .section-products .single-product .part-1 ul li {   /* Icon alignment */
-    display: inline-block;
+    display: inline-flex;
+    align-items: flex-end;
     margin-right: 4px;
 }
 
@@ -278,18 +281,26 @@ a:hover {
     color: #fe302f;
 }
 
+.section-products .single-product .product_details {
+    margin-left: 12%;
+}
+
 .section-products .single-product .product_details .product-title {
     font-size: 1rem;
+    margin: 0% 0% 2% 0%;
 }
 
 .section-products .single-product .product_details h4 {  /* Price alignment */
     display: inline-block;
     font-size: 1rem;
+    margin: 0%;
+    padding: 0 5px;
 }
 
 .section-products .single-product .product_details .product-old-price {
     position: relative;
-    padding: 0 7px;
+    padding: 0 5px;
+    margin: 0%;
     margin-right: 2px;
     opacity: 0.6;
 }
@@ -336,4 +347,5 @@ a:hover {
 {
     width: 400px;
     height: 400px;
+    margin: 0.5%;
 }
