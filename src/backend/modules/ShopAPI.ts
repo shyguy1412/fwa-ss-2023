@@ -44,6 +44,8 @@ async function resolveRequestURLToModulePath(url: string) {
     };
   }
 
+  console.log((await getFragmentsFromPath(join(basePath, moduleFragments.join('/')))));
+
   if ((await getFragmentsFromPath(join(basePath, moduleFragments.join('/')))).includes('index'))
     moduleFragments.push('index');
 
@@ -55,12 +57,13 @@ async function resolveRequestURLToModulePath(url: string) {
 
 export default function () {
 
+  const api_prefix = /^\/api\/v0/
+
   return async function (req: Request, res: Response, next: NextFunction) {
 
-    const { modulePath, queryParams } = await resolveRequestURLToModulePath(parse(req.url).pathname ?? '');
+    const { modulePath, queryParams } = await resolveRequestURLToModulePath(parse(req.url.replace(api_prefix, '')).pathname ?? '');
 
     console.log({ url: req.url, queryParams });
-
 
     if (!modulePath) return next();
 
