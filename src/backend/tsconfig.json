@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    //"baseUrl": ".",
   },
   "include": ["./**/*.ts"],
 }

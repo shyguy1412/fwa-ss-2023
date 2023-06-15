@@ -1,5 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { Request, Response } from 'express';
+import { Product } from '../../modules/models/Product';
+import { Product as IProduct } from '../../../frontend/lib/api_client';
+import { response } from '../../lib/Responses';
+
 
 const methods = {
   GET: (req: Request, res: Response) => _get(req, res),
@@ -19,13 +23,23 @@ export default async function handler(req: Request, res: Response) {
 }
 
 async function _get(req: Request, res: Response) {
-  const name = req.params.name;
+  const {slug} = req.params;  
+  const product = await Product.findOne({
+    where:{
+      product_slug:slug
+    }
+  });
+  if(!product) return response(res, "404");
+  const productResponse = {
+    id: product.id,
+    productSlug: product.product_slug,
+    productName: product.product_name,
+    price: product.price,
+    imageUrl: product.image_url,
+    description: product.description
+  };
+  res.status(200).json({ products: productResponse });
 
-  //Datenbank nach product suchen
-  const product = {name}//Rückgabe aus der Datenbank
-
-  res.status(200).json(req.params);
-  // res.status(200).json({"WAS AUCH IMMER ICH WILL": req.params.id});
 }
 
 async function _post(req: Request, res: Response) {
