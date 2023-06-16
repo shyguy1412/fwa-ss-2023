@@ -3,7 +3,7 @@
         <nav class="navbar">
             <div class="header_links_icon Header__FlexItem Header__FlexItem--fill">
                 <a href="/account" class="navicon flexdiv">
-                    <span class="icon_text">
+                    <span class="icon_text_container">
                         <!--<i class="bi bi-person-circle" height="25px" width="25px"></i>-->
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -16,22 +16,32 @@
                    
                     <input type="checkbox" id="drawer-toggle" name="drawer-toggle"/>
                     <label for="drawer-toggle" id="drawer-toggle-label"></label>
-                    <nav id="drawer">
+                    <div id="drawer">
                         <ul>
                             <li><a href="#">Menu Item</a></li>
                             <li><a href="#">Menu Item</a></li>
                             <li><a href="#">Menu Item</a></li>
-                            <li><a href="#">Menu Item</a></li>
+                            <li><a href="#">Menu Silber</a></li>
                         </ul>
-                    </nav>
+                    </div>
 
-                    <span class="icon_text">
-                        <!--<i class="bi bi-cart"></i>-->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                        </svg>
-                        <span for="drawer-toggle" class="navbaricontext">Warenkorb</span>
-                    </span>
+                    <input type="checkbox" id="cartDrawer-toggle" name="cartDrawer-toggle"/>
+                    <label for="cartDrawer-toggle" id="cartDrawer-toggle-container" class="icon_text_container"></label>
+                        <div></div>
+                            <div id="cartDrawer">
+                                <ul>
+                                    <li><a href="#">Menu Gold</a></li>
+                                    <li><a href="#">Menu Item</a></li>
+                                    <li><a href="#">Menu Item</a></li>
+                                    <li><a href="#">Menu Item</a></li>
+                                </ul>
+                            </div>
+                            <!--<i class="bi bi-cart"></i>-->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                            <span class="navbaricontext">Warenkorb</span>
+                        
                 </a>
             </div>
         </nav>
