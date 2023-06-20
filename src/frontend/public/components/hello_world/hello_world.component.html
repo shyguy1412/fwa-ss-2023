@@ -37,19 +37,31 @@
                                         <div class="cart_product_container">
                                             <div *ngFor="let product of products; index as i" class="cart_product_card" id="{{product.name}}">
                                                 <div class="cart_single-product" id="{{product.name}}">
-                                                <!--<img src="{{product.image}}"/>-->
-                                                    <div class="cart_part-1">
+                                                    <div class="cart_item">
                                                         <img src="{{product.image}}" alt="{{product.name}}"/>
-                                                        <span class="discount"><i class="fa-solid fa-beat">{{product.discount}}</i></span>
+                                                    </div>
+                                                    <div class="cart_product_details">
+                                                        <div>
+                                                            <h3 class="cart_product-title">{{product.name}}</h3>
+                                                            <h3 class="cart_product-amount">{{product.amount}}</h3>
+                                                            <h4 class="cart_product-price">{{product.price}}</h4>
+                                                        </div>
+                                                        <div class="quantityselector">
+                                                            <input type="putless" name="lessproduct" id="putquless">
+                                                            <input type="putmore" name="moreproduct" id="putquless">
+                                                            <i id="quless" class="bi bi-dash-lg"></i>
+                                                            <a id="quamount">5</a>
+                                                            <i id="qumore" class="bi bi-plus-lg"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <li><a href="#">Menu Gold</a></li>
+                                        <!--<li><a href="#">Menu Gold</a></li>
                                         <li><a href="#">Menu Item</a></li>
                                         <li><a href="#">Menu Item</a></li>
-                                        <li><a href="#">Menu Item</a></li>
+                                        <li><a href="#">Menu Item</a></li>-->
                                     </ul>
                                 </div>
                                 <!--<i class="bi bi-cart"></i>-->
@@ -72,10 +84,9 @@
             <!-- Single Product -->
                 <div *ngFor="let product of products; index as i" class="product_card" id="{{product.name}}">
                     <div class="single-product" id="{{product.name}}">
-                    <!--<img src="{{product.image}}"/>-->
                         <div class="part-1">
                             <img src="{{product.image}}" alt="{{product.name}}"/>
-                            <span class="discount"><i class="fa-solid fa-beat">{{product.discount}}</i></span>
+                            <span [ngClass]="amountClasses" class="discount"><i class="fa-solid fa-beat">{{product.discount}}</i></span>
                                 <ul class="product_icons">
                                     <li><a href="#"><i class="bi bi-cart-plus"></i></a></li> <!--<i class="bi bi-cart"></i>    <i class="fa-solid fa-cart-shopping"></i>-->
                                     <li><a href="#"><i class="bi bi-heart"></i></a></li> <!-- <i class="bi bi-heart"></i>  <i class="fa-solid fa-heart"></i>-->

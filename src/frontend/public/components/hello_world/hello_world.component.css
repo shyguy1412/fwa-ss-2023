@@ -383,7 +383,7 @@ section
         right:-410px; 
         height: 100%; 
         width: 410px; 
-        background: #2f2f2f; 
+        background: #ffffff; 
         overflow-x: hidden; 
         overflow-y: scroll; 
         padding: 20px; 
@@ -596,6 +596,16 @@ a:hover {
     font-size: 0.85rem;
 }
 
+.discount_visible
+ {
+    opacity: 1;
+ }
+
+.discount_invisible
+{
+    opacity: 0;
+}
+ 
 .section-products .single-product .part-1 .new {
     left: 0;
     background-color: #444444;
@@ -688,7 +698,7 @@ a:hover {
 .cart_product_card
 {
     width: fit-content;
-    height: 200px;
+    height: fit-content;
     margin-bottom: 3em;
     margin-left: .25em;
 }
@@ -697,9 +707,11 @@ a:hover {
 .section-products .cart_single-product 
 {
     margin-bottom: 26px;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.section-products .single-product .cart_part-1 {
+.section-products .single-product .cart_item {
     position: relative;
     display: flex;
     justify-content: center;
@@ -713,7 +725,7 @@ a:hover {
     overflow: hidden;
 }
 
-.section-products .cart_single-product .cart_part-1::before 
+.section-products .cart_single-product .cart_item::before 
 {
     position: absolute;
 	content: "";
@@ -723,14 +735,62 @@ a:hover {
     margin-top: -8px;
 	z-index: -1;
 	transition: all 0.3s;
-    background-color: #fa0000;
+    /*background-color: #fa0000;*/
 }
 
-.section-products .cart_single-product .cart_part-1 img 
+.section-products .cart_single-product .cart_item img 
 {
     /* sidebar cart image */
     width: 10em;    
     justify-items: center;
     border-radius: 10px;
     aspect-ratio: 1/1;
+}
+   
+.section-products .single-product .cart_item .cart_discount  /* discount */
+{
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: #ffffff;
+    background-color: #ff0000;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.cart_product_details
+{
+    padding-left: 40px;
+}
+
+.quantityselector
+{
+    display: inline-flex;
+    justify-items: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    border-style: dotted;
+    border-color: rgb(19, 0, 0, .2);
+    padding-left: 10px;
+    padding-right: 10px;
+    /*box-shadow: 0 2px 20px rgb(173, 255, 47);*/
+    margin-top: 3em;
+
+}
+
+.quantityselector #quless
+{
+    height: fit-content;
+    width: fit-content;
+    margin-right: .5em;
+
+}
+
+.quantityselector #qumore
+{
+    height: fit-content;
+    width: fit-content;
+    margin-left: .5em;
+
 }
