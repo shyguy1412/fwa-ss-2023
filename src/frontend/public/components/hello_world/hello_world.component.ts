@@ -12,7 +12,10 @@ export class AppComponent {
   title = 'hello-world';
 
   public myVar: string;
-  public amountClasses;
+  public discountClass;
+  public addamountClass;
+  public subamountClass;
+  public currqu: number;
 
 
   products = [
@@ -33,13 +36,22 @@ export class AppComponent {
     // constructor(){
       this.myVar = this.products[1].discount;
     
-      this.amountClasses = {
+      this.discountClass = {
         "discount_visible": this.myVar > 0 + '%' ? true : false,
         "discount_invisible": this.myVar <= 0 + '%' ? true : false
       };
     //}
 
     // make command to remove product if 0 amount is selected or hide "less"-button at 1
+      this.currqu = 1;
+
+      this.addamountClass = {
+        "addquantity": this.currqu = this.currqu + 1,
+      };
+
+      this.subamountClass = {
+        "subquantity": this.currqu = this.currqu -1
+      };
 
   }
 
