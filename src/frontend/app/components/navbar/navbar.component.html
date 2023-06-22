@@ -1,87 +1,14 @@
 <nav class="navbar">
-    <div class="header_links_icon Header__FlexItem Header__FlexItem--fill">
-        <a href="/account" class="navicon flexdiv">
-            <span class="icon_text_container">
-                <!--<i class="bi bi-person-circle" height="25px" width="25px"></i>-->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd"
-                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
-                <span class="navbaricontext">Mein Konto</span>
-            </span>
-
-        </a>
-        <a class="navicon flexdiv">
-            <span>
-                <input type="checkbox" id="cartDrawer-toggle" name="cartDrawer-toggle" />
-                <!--<label for="cartDrawer-toggle" id="cartDrawer-toggle-container" class="icon_text_container"></label>-->
-                <div id="cartDrawer">
-                    <div id="sidecartHeader_container">
-                        <a href="/shopping_cart" id="sidecartHeader">Warenkorb</a>
-                        <!--<button for="cartDrawer-toggle"></button>
-                            <input type="button" id="cartDrawer-close" name="cartDrawer-close"/>
-                            <i for="cartDrawer-close" id="sidecart-close" class="bi bi-x-lg"></i>-->
-                        <label for="cartDrawer-toggle" id="cartDrawer-close" class="bi bi-x-lg"></label>
-                    </div>
-                    <ul>
-                        <div class="cart_product_container">
-                            <div *ngFor="let product of products; index as i" class="cart_product_card"
-                                id="{{product.name}}">
-                                <div class="cart_single-product" id="{{product.name}}">
-                                    <div class="cart_item">
-                                        <img src="{{product.image}}" alt="{{product.name}}" />
-                                    </div>
-                                    <div class="cart_product_details">
-                                        <div class="cart_product_specifications">
-                                            <h3 class="cart_product-title">{{product.name}}</h3>
-                                            <h3 class="cart_product-amount">{{product.amount}}</h3>
-                                            <h4 class="cart_product-price">{{product.price}}</h4>
-                                        </div>
-                                        <div class="quantityselector">
-                                            <input type="button" name="lessproduct" id="putquless">
-                                            <input type="button" name="moreproduct" id="putquless">
-                                            <label for="putless" [ngClass]="subamountClass" id="quless"
-                                                class="bi bi-dash-lg"></label>
-                                            <a id="quamount">{{currqu}}</a>
-                                            <label for="putmore" [ngClass]="addamountClass" id="qumore"
-                                                class="bi bi-plus-lg"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sidecart_footer">
-                            <button type="submit" name="to_cart_overview" class="cart_overview">
-                                <span>Zum Warenkorb</span>
-                                <span class="Button__SeperatorDot"></span>
-                                <span class="gesamtpreis"></span>
-                            </button>
-                        </div>
-                    </ul>
-                </div>
-                <!--<i class="bi bi-cart"></i>-->
-                <label for="cartDrawer-toggle">
-                    <svg id="carticon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-cart" viewBox="0 0 16 16">
-                        <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                    </svg>
-                </label>
-                <label for="cartDrawer-toggle" id="cartDrawer-toggle-container" class="navbaricontext">Warenkorb</label>
-            </span>
-        </a>
-    </div>
-</nav>
-<div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <ul class="navbar-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/my-account">Mein Konto</a></li>
+        <li><a href="/shopping-cart">Warenkorb</a></li>
+    </ul>
     <div class="search-container">
-        <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="bi bi-search"></i></button>
-        </form>
+        <!-- <form action="/action_page.php"> -->
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="bi bi-search"></i></button>
+        <!-- </form> -->
     </div>  
-</div>
+</nav>
