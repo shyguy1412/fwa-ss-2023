@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 02. Jun 2023 um 14:54
+-- Erstellungszeit: 22. Jun 2023 um 15:23
 -- Server-Version: 5.7.42
 -- PHP-Version: 8.1.17
 
@@ -31,7 +31,7 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `shipping_method` varchar(255) DEFAULT NULL,
   `payment_method` varchar(255) DEFAULT NULL,
-  `order_date` date DEFAULT NULL,
+  `order_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

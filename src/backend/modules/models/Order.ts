@@ -6,8 +6,8 @@ export class Order extends Model<InferAttributes<Order>,InferCreationAttributes<
     declare id:CreationOptional<number>;
     declare shipping_method:string;
     declare payment_method:string;
-    
-
+    declare user_id:number;
+    declare order_date:CreationOptional<string>;
 
 }
 
@@ -25,6 +25,12 @@ if (Order != sequelize.models.Order) {
         payment_method: {
             type: DataTypes.STRING
         },
+        user_id: {
+            type: DataTypes.INTEGER
+        },
+        order_date: {
+            type: DataTypes.DATE
+        }
         
     }, {
         sequelize,

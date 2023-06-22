@@ -1,0 +1,89 @@
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { Order } from '../../../modules/models/Order';
+import type { Request, Response } from 'express';
+import { response } from '../../../lib/Responses';
+import { Product_Order } from '../../../modules/models/Product_Order';
+import type { Order as IOrder, OrderProductsInner } from '../../../../frontend/lib/api_client';
+import { Product } from '../../../modules/models/Product';
+import { User } from '../../../modules/models/User';
+
+const methods = {
+    GET: (req: Request, res: Response) => _get(req, res),
+    HEAD: (req: Request, res: Response) => _head(req, res),
+    POST: (req: Request, res: Response) => _post(req, res),
+    PUT: (req: Request, res: Response) => _put(req, res),
+    DELETE: (req: Request, res: Response) => _delete(req, res),
+    UPDATE: (req: Request, res: Response) => _update(req, res),
+    OPTIONS: (req: Request, res: Response) => _options(req, res),
+    TRACE: (req: Request, res: Response) => _trace(req, res),
+};
+
+export default async function handler(req: Request, res: Response) {
+    const method = req.method ?? 'GET';
+    if (Object.hasOwn(methods, method))
+        await methods[method as keyof typeof methods](req, res);
+}
+
+async function _get(req: Request, res: Response) {
+    //TODO: AUTH
+
+    try {
+        const user = await User.findOne();
+        const orders = (await Order.findAll({
+            where: {
+                user_id: user!.id
+            },
+            include: Product_Order
+        }));
+
+        //@ts-ignore sequilize doesnt recognize included tables
+        const productOrders: ProductOrder[] = order.getDataValue('Product_Orders');
+
+        const responseData: Required<IOrder>[] = await Promise.all(orders.map(async order => ({
+            id: order.id,
+            shippingMethod: order.shipping_method as NonNullable<IOrder['shippingMethod']>,
+            paymentMethod: order.payment_method as NonNullable<IOrder['paymentMethod']>,
+            products: await Promise.all(productOrders.map(async productOrder => ({
+                id: productOrder.id,
+                amount: productOrder.amount,
+                ...(await Product.findOne({
+                    where: {
+                        id: productOrder.id
+                    }
+                }))?.dataValues
+            })))
+        })))
+
+        res.status(200).json(responseData);
+    } catch (_) {
+        console.log(_);
+        return response(res, '500');
+    }
+}
+
+async function _post(req: Request, res: Response) {
+    res.status(500).send('Method does not exist for this route');
+}
+
+async function _put(req: Request, res: Response) {
+    res.status(500).send('Method does not exist for this route');
+}
+
+async function _delete(req: Request, res: Response) {
+    res.status(500).send('Method does not exist for this route');
+}
+
+async function _head(req: Request, res: Response<any>) {
+    res.status(500).send('Method does not exist for this route');
+}
+async function _update(req: Request, res: Response<any>) {
+    res.status(500).send('Method does not exist for this route');
+}
+
+async function _trace(req: Request, res: Response<any>) {
+    res.status(500).send('Method does not exist for this route');
+}
+
+async function _options(req: Request, res: Response) {
+    res.status(500).send('Method does not exist for this route');
+}

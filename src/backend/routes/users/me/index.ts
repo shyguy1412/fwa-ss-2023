@@ -1,7 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { Request, Response } from 'express';
-import { Product } from '../../modules/models/Product';
-import { Product as IProduct } from '../../../frontend/lib/api_client';
+import { User } from '../../../modules/models/User';
+import { User as IUser } from '../../../../frontend/lib/api_client';
+import { response } from '../../../lib/Responses';
+
 
 const methods = {
   GET: (req: Request, res: Response) => _get(req, res),
@@ -21,30 +23,26 @@ export default async function handler(req: Request, res: Response) {
 }
 
 async function _get(req: Request, res: Response) {
-  const products = await Product.findAll();
-  const productsResponse = products.map((product): Required<IProduct> => ({
-    id: product.id,
-    productSlug: product.product_slug,
-    productName: product.product_name,
-    price: product.price,
-    imageUrl: product.image_url,
-    description: product.description
-  }));
-  res.status(200).json({ products: productsResponse });
+  const user = await User.findOne({
+    
+  });
+  if(!user) return response(res, "404");
+  const userResponse:Required<IUser> = {
+      id: user.id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      postcode: user.postcode,
+      city: user.city,
+      street: user.street,
+      email: user.email,
+      phone: user.phone
+  };
+  res.status(200).json({ user: userResponse });
 
 }
 
 async function _post(req: Request, res: Response) {
-  const product = req.body as Product;
-  const newProduct = await Product.create({
-    product_slug: product.product_slug,
-    product_name: product.product_name,
-    price: product.price,
-    image_url: product.image_url,
-    description: product.description
-  });
-  await newProduct.save();
-  res.status(201).json(product);
+  res.status(500).send('Method does not exist for this route');
 }
 
 async function _put(req: Request, res: Response) {
