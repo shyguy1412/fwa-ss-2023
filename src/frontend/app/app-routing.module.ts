@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from '@frontend/app/components/landing-page/landing-page.component';
 import { ShopComponent } from '@frontend/app/components/shop/shop.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/shop-footer/shop-footer.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
-  { path: 'shop', component: ShopComponent }
+  { path: 'shop', component: ShopComponent },
+  { path: 'navbar', component: NavbarComponent},
+  { path: 'footer', component: FooterComponent}
 ]
 
 @NgModule({

@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '@frontend/app/services/product.service';
 
-@Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
-})
-export class ShopComponent {
-  public myVar: string;
-  public discountClass;
 
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
+})
+export class NavbarComponent {
+  public addamountClass;
+  public subamountClass;
+  public currqu: number;
 
   products = [
     {name: 'Thymian', discount: 0 + '%', oldprice: 80 + '€', price: 50 + '€', image: 'assets/images/Thymian.png', amount: '1kg'},
@@ -24,13 +25,19 @@ export class ShopComponent {
 
   constructor(public router:Router, private productService:ProductService){
 
-    // constructor(){
-      this.myVar = this.products[1].discount;
-    
-      this.discountClass = {
-        "discount_visible": this.myVar > 0 + '%' ? true : false,
-        "discount_invisible": this.myVar <= 0 + '%' ? true : false
+      this.currqu = 1;
+
+      this.addamountClass = {
+        "addquantity": this.currqu = this.currqu + 1,
       };
+
+      this.subamountClass = {
+        "subquantity": this.currqu = this.currqu -1
+      };
+
+
+      // make command to remove product if 0 amount is selected or hide "less"-button at 1
+
   }
 
   

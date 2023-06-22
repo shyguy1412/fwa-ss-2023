@@ -8,6 +8,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { FooterComponent } from './components/shop-footer/shop-footer.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     ShopComponent,
     LandingPageComponent,
     FooterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
