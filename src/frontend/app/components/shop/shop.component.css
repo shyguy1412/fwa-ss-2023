@@ -1,61 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 
-body {
-    font-family: "Poppins", sans-serif;
-    color: #444444;
-    margin: auto;
-}
-
-section
-{
-    background-color: rgb(255, 240, 220);
-}
-
 .section-products
 {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: #c9c9c9;
-}
-
-.bi
-{
-    height: 25px;
-    width: 25px;
-}
-
-.header 
-{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 50px;
-    align-items: flex-start;
-}
-
-.section-products .header h2 {
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #444444; 
-    font-family: "Poppins", sans-serif;
-}
-
-.section-products .header h3 {
-    font-size: 1rem;
-    color: #fe302f;
-    font-weight: 500;
-    font-family: "Poppins", sans-serif;
-
-}
-
-.section-products .header h4 {
-    font-size: 1rem;
-    color: #444444; 
-    font-weight: 500;
-    font-family: "Poppins", sans-serif;
-
+        background-color: #c9c9c9;
 }
 
 .product_container
@@ -67,18 +15,6 @@ section
     grid-template-columns: [first] 300px [col2] 300px [col3] 300px [col4] 300px [end];
     grid-template-rows: 300px;
 }
-
-a,
-a:hover {
-    text-decoration: none;
-    color: inherit;
-}
-/*
-.section-products {
-    padding: 80px 0 54px;
-}
-*/
-
 
 .section-products .single-product 
 {
