@@ -25,9 +25,6 @@ export class ShopComponent {
     {name: 'Mahlab', discount: 0 + '%', oldprice: 80 + '€', price: 80 + '€', image: 'assets/images/Mahlab.png', amount: '1kg'},
 ];
 
-
-
-
   constructor(public router:Router, private productService:ProductService){
 
     // constructor(){

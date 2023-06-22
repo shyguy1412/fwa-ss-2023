@@ -4,9 +4,9 @@ import { LandingPageComponent } from '@frontend/app/components/landing-page/land
 import { ShopComponent } from '@frontend/app/components/shop/shop.component';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
+  { path: 'landing-page', component: LandingPageComponent },
   { path: 'shop', component: ShopComponent }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

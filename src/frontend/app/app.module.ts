@@ -7,6 +7,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShopComponent } from './components/shop/shop.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { FooterComponent } from './components/shop-footer/shop-footer.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FooterComponent } from './components/shop-footer/shop-footer.component'
     ShoppingCartComponent,
     ShopComponent,
     LandingPageComponent,
-    FooterComponent
+    FooterComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
