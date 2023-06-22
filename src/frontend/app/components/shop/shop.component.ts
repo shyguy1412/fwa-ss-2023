@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from '../services/product-service/product.service';
+import { ProductService } from '@frontend/app/services/product.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './hello_world.component.html',
-  styleUrls: ['./hello_world.component.css']
+  selector: 'app-shop',
+  templateUrl: './shop.component.html',
+  styleUrls: ['./shop.component.css']
 })
-
-export class AppComponent {
-  title = 'hello-world';
-
+export class ShopComponent {
   public myVar: string;
   public discountClass;
   public addamountClass;
@@ -61,3 +58,4 @@ export class AppComponent {
     const thymian = await this.productService.getProduct('thymian');
   }
 }
+
