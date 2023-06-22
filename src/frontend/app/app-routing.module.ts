@@ -7,7 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/shop-footer/shop-footer.component';
 
 const routes: Routes = [
-  { path: 'landing-page', component: LandingPageComponent },
+  { path: '', component: LandingPageComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
 ]
