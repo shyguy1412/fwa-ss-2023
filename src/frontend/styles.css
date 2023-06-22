@@ -1,5 +1,18 @@
 @import url(../../node_modules/normalize.css/normalize.css);
 
+:root {
+  --navbar-height: 50px;
+  --footer-height: 100px;
+}
+
 * {
   font-family: "Poppins", sans-serif;
+}
+
+router-outlet+* {
+  position: relative;
+  display: block;
+  padding-top: var(--navbar-height);
+  /* top: var(--navbar-height); */
+  min-height: calc(100vh - (var(--navbar-height) + var(--footer-height)));
 }

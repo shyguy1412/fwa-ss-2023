@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: rgb(182, 123, 35);
-  height: 50px;
+  height: var(--navbar-height);
   z-index: 9999;
 }
 
