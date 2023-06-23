@@ -9,6 +9,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { FooterComponent } from './components/shop-footer/shop-footer.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TestShopComponent } from './components/test-shop/test-shop.component';
+import { TestProductCardComponent } from './components/test-product-card/test-product-card.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LandingPageComponent,
     FooterComponent,
     ProductCardComponent,
-    NavbarComponent
+    NavbarComponent,
+    TestShopComponent,
+    TestProductCardComponent
   ],
   imports: [
     BrowserModule,

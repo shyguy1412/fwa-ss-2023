@@ -5,11 +5,15 @@ import { ShopComponent } from '@frontend/app/components/shop/shop.component';
 import { ShoppingCartComponent } from '@frontend/app/components/shopping-cart/shopping-cart.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/shop-footer/shop-footer.component';
+import { TestShopComponent } from './components/test-shop/test-shop.component';
+import { TestProductCardComponent } from './components/test-product-card/test-product-card.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'test-shop', component: TestShopComponent },
+  { path: 'test-product', component: TestProductCardComponent }
 ]
 
 @NgModule({
