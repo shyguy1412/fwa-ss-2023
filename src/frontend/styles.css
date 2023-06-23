@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(../../node_modules/bootstrap-icons/font/bootstrap-icons.css);
+@import url(../../node_modules/bootstrap/dist/css/bootstrap.min.css);
+@import url(../../node_modules/normalize.css/normalize.css);
+
+:root {
+  --navbar-height: 90px;
+  --footer-height: 160px;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+router-outlet+* {
+  position: relative;
+  display: block;
+  padding-top: var(--navbar-height);
+  /* top: var(--navbar-height); */
+}

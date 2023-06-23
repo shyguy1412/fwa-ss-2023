@@ -11,7 +11,7 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src/frontend",
-      "prefix": "frontend/public",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

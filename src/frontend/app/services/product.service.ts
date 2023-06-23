@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { productApi } from '@frontend/lib/ApiInstances';
-import { ProductDTO } from '../../dto/ProductDTO';
+import { ProductDTO } from '@frontend/app/dto/ProductDTO';
 
 
 @Injectable({

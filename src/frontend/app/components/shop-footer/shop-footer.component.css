@@ -1,0 +1,10 @@
+.shop-footer {
+  position: relative;
+  display: flex;
+  height: var(--footer-height);
+  background-color: rgb(207, 186, 175);
+}
+
+.shop-footer > ul {
+
+}

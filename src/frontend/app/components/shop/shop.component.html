@@ -1,0 +1,33 @@
+<section class="section-products h-100">
+    <div class="container">
+        <div class="product_container">
+            <!-- Single Product -->
+            <div *ngFor="let product of products; index as i" class="product_card" id="{{product.name}}">
+
+                <div class="single-product" id="{{product.name}}">
+                    <div class="part-1">
+                        <img src="{{product.image}}" alt="{{product.name}}" />
+                        <span [ngClass]="discountClass" class="discount"><i
+                                class="fa-solid fa-beat">{{product.discount}}</i></span>
+                        <ul class="product_icons">
+                            <li><a href="#"><i class="bi bi-cart-plus"></i></a></li>
+                            <!--<i class="bi bi-cart"></i>    <i class="fa-solid fa-cart-shopping"></i>-->
+                            <li><a href="#"><i class="bi bi-heart"></i></a></li>
+                            <!-- <i class="bi bi-heart"></i>  <i class="fa-solid fa-heart"></i>-->
+                            <!--<li><a href="#"><i class="bi bi-patch-plus"></i></a></li>-->
+                            <!-- <i class="bi bi-patch-plus"> </i> <i class="fa-solid fa-plus"></i>-->
+                            <li><a href="#"><i class="bi bi-arrows-angle-expand"></i></a></li>
+                            <!-- <i class="bi bi-arrows-angle-expand"></i>  <i class="fa-solid fa-expand"></i>-->
+                        </ul>
+                    </div>
+                    <div class="product_details">
+                        <h3 class="product-title">{{product.name}}</h3>
+                        <h4 class="product-old-price"><i class="fa-solid fa-strikethrough">{{product.oldprice}}</i></h4>
+                        <h4 class="product-price">{{product.price}}</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
