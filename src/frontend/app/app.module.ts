@@ -11,6 +11,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TestShopComponent } from './components/test-shop/test-shop.component';
 import { TestProductCardComponent } from './components/test-product-card/test-product-card.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { TestProductCardComponent } from './components/test-product-card/test-pr
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

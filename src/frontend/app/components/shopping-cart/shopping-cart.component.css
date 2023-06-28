@@ -1,7 +1,7 @@
-.col
+/* .col
 {
   background-color: aqua  ;
-  /* margin: 2px; */
+  margin: 2px;
   width: fit-content;
 }
 
@@ -24,4 +24,53 @@ img{
   flex-direction: row;
   column-gap: 15px;
   align-content: center;
+} */
+
+
+.shopping-cart {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.shopping-cart h2 {
+  margin-top: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+table th {
+  background-color: #f0f0f0;
+}
+
+.cart-total {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.cart-total h3 {
+  margin: 0;
+}
+
+.cart-total button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-total button:hover {
+  background-color: #0056b3;
 }
