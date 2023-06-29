@@ -1,0 +1,30 @@
+import { Order, Product } from "@frontend/lib/api_client";
+
+export type ProductOrder = Required<NonNullable<Order['products']>[number]>;
+
+export class ProductOrderDTO implements ProductOrder{
+  id: number;
+  productSlug: string;
+  productName: string;
+  price: number;
+  imageUrl: string;
+  description: string;
+  amount: number;
+
+  constructor(product: ProductOrder) {
+    if (!product.id) throw new Error('Invalid Product Id');
+    if (!product.productSlug) throw new Error('Invalid Product Slug');
+    if (!product.productName) throw new Error('Invalid Product  Name');
+    if (!product.price) throw new Error('Invalid Product Price');
+    if (!product.imageUrl) throw new Error('Invalid Product Image Url');
+    if (!product.description) throw new Error('Invalid Product Description');
+
+    this.id = product.id;
+    this.productSlug = product.productSlug;
+    this.productName = product.productName;
+    this.price = product.price;
+    this.imageUrl = product.imageUrl;
+    this.description = product.description;
+    this.amount = product.amount;
+  }
+}
