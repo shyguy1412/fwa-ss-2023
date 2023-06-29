@@ -72,6 +72,7 @@ export class ShoppingCartComponent {
   }
 
   async checkout() {
+    if (this.cartItems.length == 0) return;
     await orderApi.ordersPost({
       order: {
         shippingMethod: 'express',

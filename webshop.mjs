@@ -11,6 +11,22 @@ if (process.argv.includes('--install')) {
     stdio: ['inherit', 'inherit', 'inherit']
   });
 
+  const generateApi = spawn(`${npm}`, ['run', 'generate:api'], {
+    stdio: ['inherit', 'inherit', 'inherit']
+  });
+
+  const docker = spawn(`docker`, ['compose', 'create'], {
+    stdio: ['inherit', 'inherit', 'inherit']
+  });
+
+  await new Promise(resolve => {
+    docker.addListener('exit', () => resolve());
+  });
+
+  await new Promise(resolve => {
+    generateApi.addListener('exit', () => resolve());
+  });
+
   await new Promise(resolve => {
     installProcess.addListener('exit', () => resolve());
   });
@@ -37,14 +53,18 @@ program
     const serverProcess = spawn(`${npm}`, ['start'], {
       cwd: __dirname,
     });
-  
+
+    const docker = spawn(`docker`, ['compose', 'start'], {
+      cwd: __dirname,
+    })
+
     ipcSocket.on("message", function (msg) {
       if (msg.toString('utf-8') == 'started')
         process.exit();
     });
-  
+
     ipcSocket.bind(port - 1, 'localhost');
-  
+
     //We still gotta get the console output tho
     serverProcess.stdout.on('data', data => process.stdout.write(data));
     serverProcess.stderr.on('data', data => process.stderr.write(data));

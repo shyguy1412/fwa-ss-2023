@@ -9,7 +9,6 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { FooterComponent } from './components/shop-footer/shop-footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TestShopComponent } from './components/test-shop/test-shop.component';
-import { TestProductCardComponent } from './components/test-product-card/test-product-card.component';
 import { FormsModule } from '@angular/forms';
 import { MeinKontoComponent } from './components/mein-konto/mein-konto.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
@@ -25,7 +24,6 @@ import { TestMyAccountComponent } from './components/test-my-account/test-my-acc
     FooterComponent,
     NavbarComponent,
     TestShopComponent,
-    TestProductCardComponent,
     MeinKontoComponent,
     CheckoutComponent,
     TestMyAccountComponent
