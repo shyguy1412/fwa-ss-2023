@@ -15,13 +15,6 @@ if (process.argv.includes('--install')) {
     stdio: ['inherit', 'inherit', 'inherit']
   });
 
-  const docker = spawn(`docker`, ['compose', 'create'], {
-    stdio: ['inherit', 'inherit', 'inherit']
-  });
-
-  await new Promise(resolve => {
-    docker.addListener('exit', () => resolve());
-  });
 
   await new Promise(resolve => {
     generateApi.addListener('exit', () => resolve());
@@ -40,11 +33,25 @@ config();
 
 const program = new Command();
 
+if (process.argv.includes('--docker')) {
+  const docker = spawn(`docker`, ['compose', 'create'], {
+    stdio: ['inherit', 'inherit', 'inherit']
+  });
+
+  await new Promise(resolve => {
+    docker.addListener('exit', () => resolve());
+  });
+
+  spawn(`docker`, ['compose', 'start'], {
+    cwd: __dirname,
+  });
+}
 
 program
   .command('start')
   .description('starts the server')
   .option('--install', 'runs npm install before starting', false)
+  .option('--docker', 'create and start docker container', false)
   .action(() => {
     const ipcSocket = createSocket('udp4');
     const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
@@ -54,9 +61,6 @@ program
       cwd: __dirname,
     });
 
-    const docker = spawn(`docker`, ['compose', 'start'], {
-      cwd: __dirname,
-    })
 
     ipcSocket.on("message", function (msg) {
       if (msg.toString('utf-8') == 'started')
