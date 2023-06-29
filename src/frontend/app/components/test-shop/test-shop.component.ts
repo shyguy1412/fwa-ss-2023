@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
-
-interface Product {
-  name: string;
-  image: string;
-  discount: number;
-  oldprice: number;
-  price: number;
-}
-
-
+import { ProductDTO } from '@frontend/app/dto/ProductDTO';
+import { ProductOrder, ProductOrderDTO } from '@frontend/app/dto/ProductOrderDTO';
+import { ProductService } from '@frontend/app/services/product.service';
 
 @Component({
   selector: 'app-test-shop',
@@ -18,54 +11,55 @@ interface Product {
 
 
 export class TestShopComponent {
-  products: Product[] = [
-    {name: 'Thymian', discount: 0, oldprice: 80, price: this.calculatePriceWithDiscount(80, 0), image: 'assets/images/Thymian.png'},
-    {name: 'Rosmarin', discount: 15, oldprice: 9, price: this.calculatePriceWithDiscount(9, 15), image: 'assets/images/Rosmarin.png'},
-    {name: 'Basilikum', discount: 15, oldprice: 11, price: this.calculatePriceWithDiscount(11, 15), image: 'assets/images/Basilikum.png'},
-    {name: 'Vanille', discount: 5, oldprice: 218, price: this.calculatePriceWithDiscount(218, 5), image: 'assets/images/Vanille.png'},
-    {name: 'Safran', discount: 10, oldprice: 1100, price: this.calculatePriceWithDiscount(1100, 10), image: 'assets/images/Safran.png'},
-    {name: 'Trüffel', discount: 5, oldprice: 110, price: this.calculatePriceWithDiscount(110, 5), image: 'assets/images/Trüffel.png'},
-    {name: 'Mahlab', discount: 0, oldprice: 80, price: this.calculatePriceWithDiscount(80, 0), image: 'assets/images/Mahlab.png'},
-  ];
+  products: ProductDTO[] = [];
+  cartItems: ProductOrderDTO[] = [];
 
+  constructor(public productService: ProductService) { }
+
+  async ngOnInit() {
+    this.products = await this.productService.getProducts();
+    // this.products.reverse();
+    this.filterProducts();
+    const cart = JSON.parse(localStorage.getItem('shopping-cart') ?? '[]') as ProductOrder[];
+    this.cartItems = cart.map(product => new ProductOrderDTO(product));
+  }
 
   calculatePriceWithDiscount(oldPrice: number, discount: number): number {
     const discountedPrice = oldPrice - (oldPrice * (discount / 100));
     return discountedPrice;
   }
 
-  filteredProducts: Product[] = [];
+  filteredProducts: ProductDTO[] = [];
   searchQuery: string = '';
 
   filterProducts(): void {
     this.filteredProducts = this.products.filter(product =>
-      product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      product.productName.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 
-  cartItems: { name: string, discount: number, oldprice: number, price: number, image: string, amount: string, quantity: number }[] = [];   
-
-  addToCart(product: { name: string, price: number }): void {
-    const existingItem = this.cartItems.find(item => item.name === product.name);
+  addToCart(product: ProductDTO): void {
+    const existingItem = this.cartItems.find(item => item.productName === product.productName);
     if (existingItem) {
-      existingItem.quantity++;
+      existingItem.amount++;
     } else {
-      const newItem = {
-        name: product.name,
-        quantity: 1,
+      const newItem:ProductOrderDTO = {
+        productName: product.productName,
         price: product.price,
-        discount: 0, // Add default value if needed
-        oldprice: 0, // Add default value if needed
-        image: '', // Add default value if needed
-        amount: '', // Add default value if needed
+        amount: 1,
+        id: product.id,
+        productSlug: product.productSlug,
+        imageUrl: product.imageUrl,
+        description: product.description
       };
       this.cartItems.push(newItem);
     }
+    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems));
   }
 
-  decreaseQuantity(item: any): void {
-    if (item.quantity > 1) {
-      item.quantity--;
+  decreaseQuantity(item: ProductOrderDTO): void {
+    if (item.amount > 1) {
+      item.amount--;
     }
   }
 
@@ -83,7 +77,7 @@ export class TestShopComponent {
   calculateTotal() {
     let total = 0;
     for (const item of this.cartItems) {
-      total += item.quantity * item.price;
+      total += item.amount * item.price;
     }
     return total;
   }
@@ -92,7 +86,7 @@ export class TestShopComponent {
     // Implement your checkout logic here
   }
 
-  constructor() {
-    this.filterProducts();
-  }
+  // constructor() {
+  //   this.filterProducts();
+  // }
 }

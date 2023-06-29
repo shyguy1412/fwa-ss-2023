@@ -28,18 +28,15 @@
     </div>
   </div>
   
-  
-  
-  
   <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
     <div *ngFor="let product of filteredProducts" class="col mb-5">
       <div class="card h-100 d-flex flex-column">
-        <img class="card-img-top" [src]="product.image" alt="Product Image" />
+        <img class="card-img-top" [src]="product.imageUrl" alt="Product Image" />
         <div class="card-body p-4 flex-grow-1">
           <div class="text-center">
-            <h5 class="fw-bolder">{{ product.name }}</h5>
-            <div *ngIf="product.discount > 0" class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-            <div *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">{{ product.oldprice }}<i>€</i></div>
+            <h5 class="fw-bolder">{{ product.productName }}</h5>
+            <!-- <div *ngIf="product.discount > 0" class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+            <!-- <div *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">{{ product.oldprice ?? 1000000 }}<i>€</i></div> -->
             <div class="">{{ product.price }}<i>€</i></div>
             <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
           </div>
@@ -47,7 +44,7 @@
       </div>
     </div>
   </div>
-  
+<!--   
   <div class="shopping-cart">
     <table>
       <thead>
@@ -82,7 +79,7 @@
   </div>
   
   
-  
+   -->
 
 
 <!--

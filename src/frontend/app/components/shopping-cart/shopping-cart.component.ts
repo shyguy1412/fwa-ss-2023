@@ -20,6 +20,8 @@
 // }
 
 import { Component } from '@angular/core';
+import { ProductOrder, ProductOrderDTO } from '@frontend/app/dto/ProductOrderDTO';
+import { Product } from '@frontend/lib/api_client';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -27,35 +29,45 @@ import { Component } from '@angular/core';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
-  cartItems: any[] = [
-    { name: 'Product 1', quantity: 2, price: 10 },
-    { name: 'Product 2', quantity: 1, price: 15 },
-    { name: 'Product 3', quantity: 3, price: 8 }
-  ];
+  // cartItems: any[] = [
+  //   { name: 'Product 1', quantity: 2, price: 10 },
+  //   { name: 'Product 2', quantity: 1, price: 15 },
+  //   { name: 'Product 3', quantity: 3, price: 8 }
+  // ];
 
-  decreaseQuantity(item: any): void {
-    if (item.quantity > 1) {
-      item.quantity--;
+  cartItems: ProductOrderDTO[] = [];
+
+  ngOnInit() {
+    const products = JSON.parse(localStorage.getItem('shopping-cart') ?? '[]') as ProductOrder[];
+    this.cartItems = products.map(product => new ProductOrderDTO(product));
+  }
+
+  decreaseQuantity(item: ProductOrderDTO): void {
+    if (item.amount > 1) {
+      item.amount--;
     }
+    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems))
   }
 
-  increaseQuantity(item: any): void {
-    item.quantity++;
+  increaseQuantity(item: ProductOrderDTO): void {
+    item.amount++;
+    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems))
   }
 
-  removeFromCart(item: any): void {
+  removeFromCart(item: ProductOrderDTO): void {
     const index = this.cartItems.indexOf(item);
     if (index !== -1) {
       this.cartItems.splice(index, 1);
     }
+    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems))
   }
 
-  calculateTotal(): number {
+  calculateTotal(): string {
     let total = 0;
     for (const item of this.cartItems) {
-      total += item.quantity * item.price;
+      total += item.amount * item.price;
     }
-    return total;
+    return total.toFixed(2);
   }
 
   checkout(): void {
