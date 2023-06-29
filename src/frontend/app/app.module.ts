@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TestShopComponent } from './components/test-shop/test-shop.component';
 import { TestProductCardComponent } from './components/test-product-card/test-product-card.component';
 import { FormsModule } from '@angular/forms';
+import { TestMyAccountComponent } from './components/test-my-account/test-my-account.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     ProductCardComponent,
     NavbarComponent,
     TestShopComponent,
-    TestProductCardComponent
+    TestProductCardComponent,
+    TestMyAccountComponent
   ],
   imports: [
     BrowserModule,
