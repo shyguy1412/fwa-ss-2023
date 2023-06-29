@@ -11,7 +11,7 @@ export default function () {
   app.use(ShopAPI());
   
   app.use('/', (_req, res) => {
-    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
   })
 
   // app.use((req, res) => res.status(404));
