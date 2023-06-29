@@ -7,7 +7,6 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShopComponent } from './components/shop/shop.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { FooterComponent } from './components/shop-footer/shop-footer.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TestShopComponent } from './components/test-shop/test-shop.component';
 import { TestProductCardComponent } from './components/test-product-card/test-product-card.component';
@@ -24,7 +23,6 @@ import { TestMyAccountComponent } from './components/test-my-account/test-my-acc
     ShopComponent,
     LandingPageComponent,
     FooterComponent,
-    ProductCardComponent,
     NavbarComponent,
     TestShopComponent,
     TestProductCardComponent,
