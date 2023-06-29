@@ -14,6 +14,7 @@ import { TestProductCardComponent } from './components/test-product-card/test-pr
 import { FormsModule } from '@angular/forms';
 import { MeinKontoComponent } from './components/mein-konto/mein-konto.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { TestMyAccountComponent } from './components/test-my-account/test-my-account.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     TestShopComponent,
     TestProductCardComponent,
     MeinKontoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    TestMyAccountComponent
   ],
   imports: [
     BrowserModule,

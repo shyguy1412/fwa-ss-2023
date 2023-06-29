@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-md navbar-light navbar-custom">
+    <div class="container">
+      Mein Account
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./">Order History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Account_Options">Account Options</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Account_Logout">Log Out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="order-list">
+      <h2>Order History</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6">Order ID: 1</div>
+            <div class="col-3">Date: June 28, 2023</div>
+            <div class="col-3 text-right">Total Amount: $50.00</div>
+          </div>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order1Details"
+            aria-expanded="false" aria-controls="order1Details">Show More Details</button>
+          <div class="collapse mt-3" id="order1Details">
+            <p>Order Details for Order ID 1...</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6">Order ID: 2</div>
+            <div class="col-3">Date: June 26, 2023</div>
+            <div class="col-3 text-right">Total Amount: $35.00</div>
+          </div>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order2Details"
+            aria-expanded="false" aria-controls="order2Details">Show More Details</button>
+          <div class="collapse mt-3" id="order2Details">
+            <p>Order Details for Order ID 2...</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6">Order ID: 3</div>
+            <div class="col-3">Date: June 20, 2023</div>
+            <div class="col-3 text-right">Total Amount: $42.00</div>
+          </div>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order3Details"
+            aria-expanded="false" aria-controls="order3Details">Show More Details</button>
+          <div class="collapse mt-3" id="order3Details">
+            <p>Order Details for Order ID 3...</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6">Order ID: 4</div>
+            <div class="col-3">Date: June 15, 2023</div>
+            <div class="col-3 text-right">Total Amount: $28.00</div>
+          </div>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order4Details"
+            aria-expanded="false" aria-controls="order4Details">Show More Details</button>
+          <div class="collapse mt-3" id="order4Details">
+            <p>Order Details for Order ID 4...</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
