@@ -1,7 +1,7 @@
 import { Configuration, ProductApi } from "./api_client";
 
 const config = new Configuration({
-  basePath: 'api/v1',
+  basePath: 'api/v0',
   accessToken: 'bla'
 })
 
