@@ -22,12 +22,12 @@ export default async function handler(req: Request, res: Response) {
 
 async function _get(req: Request, res: Response) {
   const products = await Product.findAll();
-  const productsResponse = products.map((product): Required<IProduct> => ({
+  const productsResponse = products.map((product): Required<CamelToSnakeCaseNested<IProduct>> => ({
     id: product.id,
-    productSlug: product.product_slug,
-    productName: product.product_name,
+    product_slug: product.product_slug,
+    product_name: product.product_name,
     price: product.price,
-    imageUrl: product.image_url,
+    image_url: product.image_url,
     description: product.description
   }));
   res.status(200).json({ products: productsResponse });

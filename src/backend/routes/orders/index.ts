@@ -3,9 +3,9 @@ import { Order } from '../../modules/models/Order';
 import type { Request, Response } from 'express';
 import { response } from '../../lib/Responses';
 import { Product_Order } from '../../modules/models/Product_Order';
-import type { Order as IOrder, OrderProductsInner } from '../../../frontend/lib/api_client';
+import type { Order as IOrder } from '../../../frontend/lib/api_client';
 import { Product } from '../../modules/models/Product';
-import { User } from '../../modules/models/User';
+import { getProductOrderProduct } from '../../lib/APIHelpers';
 
 const methods = {
     GET: (req: Request, res: Response) => _get(req, res),
@@ -35,20 +35,12 @@ async function _get(req: Request, res: Response) {
         //@ts-ignore sequilize doesnt recognize included tables
         const productOrders: ProductOrder[] = order.getDataValue('Product_Orders');
 
-        const responseData: Required<IOrder>[] = await Promise.all(orders.map(async order => ({
+        const responseData: CamelToSnakeCaseNested<Required<IOrder>>[] = await Promise.all(orders.map(async order => ({
             id: order.id,
-            shippingMethod: order.shipping_method as NonNullable<IOrder['shippingMethod']>,
-            paymentMethod: order.payment_method as NonNullable<IOrder['paymentMethod']>,
-            products: await Promise.all(productOrders.map(async productOrder => ({
-                id: productOrder.id,
-                amount: productOrder.amount,
-                ...(await Product.findOne({
-                    where: {
-                        id: productOrder.id
-                    }
-                }))?.dataValues
-            })))
-        })))
+            shipping_method: order.shipping_method as NonNullable<IOrder['shippingMethod']>,
+            payment_method: order.payment_method as NonNullable<IOrder['paymentMethod']>,
+            products: await Promise.all(productOrders.map(productOrder => getProductOrderProduct(productOrder)))
+        })));
 
         res.status(200).json(responseData);
     } catch (_) {
@@ -58,19 +50,19 @@ async function _get(req: Request, res: Response) {
 }
 
 async function _post(req: Request, res: Response) {
-    const order = req.body as Order & {products: Product_Order[]};
+    const order = req.body as Order & { products: NonNullable<IOrder['products']>; };
     const newOrder = await Order.create({
         shipping_method: order.shipping_method,
         payment_method: order.payment_method,
         user_id: order.user_id
-    })
+    });
     newOrder.save();
-    for (const productOrder of order.products){
+    for (const productOrder of order.products) {
         const newProductOrder = await Product_Order.create({
-            amount: productOrder.amount,
+            amount: productOrder.amount!,
             order_id: newOrder.id,
-            product_id: productOrder.id
-        })
+            product_id: productOrder.id!
+        });
     }
     res.status(201).json(order);
 }

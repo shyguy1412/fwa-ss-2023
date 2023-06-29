@@ -2,7 +2,6 @@
 import type { Request, Response } from 'express';
 import { User } from '../../modules/models/User';
 import { User as IUser } from '../../../frontend/lib/api_client';
-import { response } from '../../lib/Responses';
 
 
 const methods = {
@@ -24,10 +23,10 @@ export default async function handler(req: Request, res: Response) {
 
 async function _get(req: Request, res: Response) {
     const users = await User.findAll();
-    const userResponse: Required<IUser>[] = users.map(user => ({
+    const userResponse: Required<CamelToSnakeCaseNested<IUser>>[] = users.map(user => ({
         id: user.id,
-        firstName: user.first_name,
-        lastName: user.last_name,
+        first_name: user.first_name,
+        last_name: user.last_name,
         postcode: user.postcode,
         city: user.city,
         street: user.street,
