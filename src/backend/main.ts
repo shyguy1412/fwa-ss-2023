@@ -1,6 +1,9 @@
-import express from '@/modules/express';
+import express from './modules/express';
 import { config as loadConfigFile } from 'dotenv';
 import { createSocket } from 'dgram';
+import { Order } from './modules/models/Order';
+import { Product_Order } from './modules/models/Product_Order';
+import { User } from './modules/models/User';
 
 loadConfigFile();
 
@@ -26,16 +29,7 @@ app.listen(port, () => {
   ipcSocket.send('started', port - 1, 'localhost');
 });
 
-// (async function () {
-//   const jane = await User.create({
-//     name: 'Homer',
-//     password: '',
-//     postcode: '',
-//     city: '',
-//     street: ''
-//   });
-
-//   const users = await User.findAll();
-//   console.log(users);
-
-// })();
+User.hasMany(Order, {foreignKey: 'user_id'});
+Order.belongsTo(User, {foreignKey: 'user_id'});
+Order.hasMany(Product_Order, { foreignKey: 'order_id' });
+Product_Order.belongsTo(Order, { foreignKey: 'order_id' });

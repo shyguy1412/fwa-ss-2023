@@ -541,6 +541,9 @@ components:
           type: string
           enum: [PayPal, Visa, Apple Pay, Google Pay]
           example: PayPal
+        user_id:
+          type: integer
+          example: 1
         products:
           type: array
           items:
