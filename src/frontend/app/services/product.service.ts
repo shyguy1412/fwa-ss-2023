@@ -16,4 +16,10 @@ export class ProductService {
     });
     return new ProductDTO(response);
   }
+  async getProducts(): Promise<ProductDTO[]> {
+    const response = await productApi.productsGet();
+    console.log(response);
+    
+    return response.map(product => new ProductDTO(product));
+  }
 }
