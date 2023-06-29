@@ -1,0 +1,20 @@
+.order-list {
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+
+  .order-list .list-group-item {
+    border-color: #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-custom {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-custom .navbar-brand {
+    font-size: 20px;
+  }
