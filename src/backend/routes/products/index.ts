@@ -30,7 +30,7 @@ async function _get(req: Request, res: Response) {
     image_url: product.image_url,
     description: product.description
   }));
-  res.status(200).json({ products: productsResponse });
+  res.status(200).json(productsResponse);
 
 }
 
