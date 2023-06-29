@@ -33,13 +33,15 @@ async function _get(req: Request, res: Response) {
         }));
 
         //@ts-ignore sequilize doesnt recognize included tables
-        const productOrders: ProductOrder[] = order.getDataValue('Product_Orders');
+        const productOrders: ProductOrder[][] = orders.map(order => order.getDataValue('Product_Orders'))
 
-        const responseData: CamelToSnakeCaseNested<Required<IOrder>>[] = await Promise.all(orders.map(async order => ({
+        const responseData: CamelToSnakeCaseNested<Required<IOrder>>[] = await Promise.all(orders.map(async (order, i) => ({
             id: order.id,
+            user_id: order.user_id,
+            order_date: order.order_date,
             shipping_method: order.shipping_method as NonNullable<IOrder['shippingMethod']>,
             payment_method: order.payment_method as NonNullable<IOrder['paymentMethod']>,
-            products: await Promise.all(productOrders.map(productOrder => getProductOrderProduct(productOrder)))
+            products: await Promise.all(productOrders[i].map(productOrder => getProductOrderProduct(productOrder)))
         })));
 
         res.status(200).json(responseData);

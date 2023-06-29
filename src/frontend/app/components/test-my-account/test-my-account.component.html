@@ -25,54 +25,26 @@
     <div class="order-list">
       <h2>Order History</h2>
       <ul class="list-group">
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-6">Order ID: 1</div>
-            <div class="col-3">Date: June 28, 2023</div>
-            <div class="col-3 text-right">Total Amount: $50.00</div>
+
+        <li *ngFor="let order of orders" class="list-group-item">
+          <div class="row w-100">
+            <div class="col">Order ID: {{order.id}}</div>
+            <details class="col" >
+              <summary>Products</summary>
+              <div *ngFor="let product of order.products">
+                <span>{{product.amount}}x {{product.productName}}</span>
+              </div>
+            </details>
+            <div class="col">Date: {{order.formattedDate()}}</div>
+            <div class="col text-right">Total Amount: {{order.total().toFixed(2)}}€</div>
           </div>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order1Details"
-            aria-expanded="false" aria-controls="order1Details">Show More Details</button>
+        </li>
+          <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order1Details"
+            aria-expanded="false" aria-controls="order1Details">Show More Details</button>    
           <div class="collapse mt-3" id="order1Details">
             <p>Order Details for Order ID 1...</p>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-6">Order ID: 2</div>
-            <div class="col-3">Date: June 26, 2023</div>
-            <div class="col-3 text-right">Total Amount: $35.00</div>
-          </div>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order2Details"
-            aria-expanded="false" aria-controls="order2Details">Show More Details</button>
-          <div class="collapse mt-3" id="order2Details">
-            <p>Order Details for Order ID 2...</p>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-6">Order ID: 3</div>
-            <div class="col-3">Date: June 20, 2023</div>
-            <div class="col-3 text-right">Total Amount: $42.00</div>
-          </div>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order3Details"
-            aria-expanded="false" aria-controls="order3Details">Show More Details</button>
-          <div class="collapse mt-3" id="order3Details">
-            <p>Order Details for Order ID 3...</p>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-6">Order ID: 4</div>
-            <div class="col-3">Date: June 15, 2023</div>
-            <div class="col-3 text-right">Total Amount: $28.00</div>
-          </div>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#order4Details"
-            aria-expanded="false" aria-controls="order4Details">Show More Details</button>
-          <div class="collapse mt-3" id="order4Details">
-            <p>Order Details for Order ID 4...</p>
-          </div>
-        </li>
+          </div> -->
+
       </ul>
     </div>
   </div>

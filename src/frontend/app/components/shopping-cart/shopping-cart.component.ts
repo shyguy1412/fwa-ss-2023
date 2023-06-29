@@ -21,6 +21,7 @@
 
 import { Component } from '@angular/core';
 import { ProductOrder, ProductOrderDTO } from '@frontend/app/dto/ProductOrderDTO';
+import { orderApi } from '@frontend/lib/ApiInstances';
 import { Product } from '@frontend/lib/api_client';
 
 @Component({
@@ -46,12 +47,12 @@ export class ShoppingCartComponent {
     if (item.amount > 1) {
       item.amount--;
     }
-    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems))
+    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems));
   }
 
   increaseQuantity(item: ProductOrderDTO): void {
     item.amount++;
-    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems))
+    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems));
   }
 
   removeFromCart(item: ProductOrderDTO): void {
@@ -59,7 +60,7 @@ export class ShoppingCartComponent {
     if (index !== -1) {
       this.cartItems.splice(index, 1);
     }
-    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems))
+    localStorage.setItem('shopping-cart', JSON.stringify(this.cartItems));
   }
 
   calculateTotal(): string {
@@ -70,8 +71,21 @@ export class ShoppingCartComponent {
     return total.toFixed(2);
   }
 
-  checkout(): void {
+  async checkout() {
+    await orderApi.ordersPost({
+      order: {
+        shippingMethod: 'express',
+        paymentMethod: 'PayPal',
+        userId: 1,
+        products: this.cartItems.map(product => ({
+          id: product.id,
+          amount: product.amount
+        }))
+      }
+    });
+    localStorage.removeItem('shopping-cart');
+    window.location.assign('/mein-konto');
     // Implement the checkout logic here
-    console.log('Checkout initiated');
+    // console.log('Checkout initiated');
   }
 }
