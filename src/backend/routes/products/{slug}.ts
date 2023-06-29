@@ -23,19 +23,19 @@ export default async function handler(req: Request, res: Response) {
 }
 
 async function _get(req: Request, res: Response) {
-  const {slug} = req.params;  
+  const { slug } = req.params;
   const product = await Product.findOne({
-    where:{
-      product_slug:slug
+    where: {
+      product_slug: slug
     }
   });
-  if(!product) return response(res, "404");
-  const productResponse = {
+  if (!product) return response(res, "404");
+  const productResponse: CamelToSnakeCaseNested<Required<IProduct>> = {
     id: product.id,
-    productSlug: product.product_slug,
-    productName: product.product_name,
+    product_slug: product.product_slug,
+    product_name: product.product_name,
     price: product.price,
-    imageUrl: product.image_url,
+    image_url: product.image_url,
     description: product.description
   };
   res.status(200).json({ products: productResponse });

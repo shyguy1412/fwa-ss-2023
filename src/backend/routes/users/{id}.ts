@@ -30,10 +30,10 @@ async function _get(req: Request, res: Response) {
     }
   });
   if(!user) return response(res, "404");
-  const userResponse:Required<IUser> = {
+  const userResponse:Required<CamelToSnakeCaseNested<IUser>> = {
       id: user.id,
-      firstName: user.first_name,
-      lastName: user.last_name,
+      first_name: user.first_name,
+      last_name: user.last_name,
       postcode: user.postcode,
       city: user.city,
       street: user.street,
