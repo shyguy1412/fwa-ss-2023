@@ -12,11 +12,11 @@ import { TestMyAccountComponent } from './components/test-my-account/test-my-acc
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'shop', component: ShopComponent },
+  { path: 'shop', component: TestShopComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'test-shop', component: TestShopComponent },
   { path: 'test-product', component: TestProductCardComponent },
-  { path: 'mein-konto', component: MeinKontoComponent},
+  { path: 'mein-konto', component: TestMyAccountComponent},
   { path: 'test-account', component: TestMyAccountComponent }
 ]
 
