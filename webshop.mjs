@@ -11,17 +11,16 @@ if (process.argv.includes('--install')) {
     stdio: ['inherit', 'inherit', 'inherit']
   });
 
+  await new Promise(resolve => {
+    installProcess.addListener('exit', () => resolve());
+  });
+
   const generateApi = spawn(`${npm}`, ['run', 'generate:api'], {
     stdio: ['inherit', 'inherit', 'inherit']
   });
 
-
   await new Promise(resolve => {
     generateApi.addListener('exit', () => resolve());
-  });
-
-  await new Promise(resolve => {
-    installProcess.addListener('exit', () => resolve());
   });
 }
 
