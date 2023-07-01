@@ -55,7 +55,7 @@ async function resolveRequestURLToModulePath(url: string) {
 
 export default function () {
 
-  const api_prefix = /^\/api\/v0/
+  const api_prefix = /^\/api\/v0/;
 
   return async function (req: Request, res: Response, next: NextFunction) {
 
@@ -68,7 +68,10 @@ export default function () {
     const { default: { default: handler } } = await import(pathToFileURL(modulePath).toString()) as {
       default: { default: (req: Request, res: Response) => void | Promise<void>; },
     };
-
-    handler(req, res);
+    try {
+      handler(req, res);
+    } catch (_) {
+      res.status(500).send();
+    }
   };
 }
