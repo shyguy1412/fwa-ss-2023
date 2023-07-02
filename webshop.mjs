@@ -47,10 +47,12 @@ if (process.argv.includes('--docker')) {
 }
 
 program
+  .option('--install', 'runs npm install before starting', false)
+  .option('--docker', 'create and start docker container', false);
+
+program
   .command('start')
   .description('starts the server')
-  .option('--install', 'runs npm install before starting', false)
-  .option('--docker', 'create and start docker container', false)
   .action(() => {
     const ipcSocket = createSocket('udp4');
     const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
