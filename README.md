@@ -8,6 +8,5 @@
 ## Production
 
 ```sh
-git checkout production
 npx webshop start --install --docker
 ```
