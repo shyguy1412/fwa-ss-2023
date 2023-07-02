@@ -32,10 +32,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('test');
   });
 
-  it('should render title', () => {
+  it('should render navbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('test');
+    expect(compiled.querySelector('navbar')).not.toBeNull();
   });
 });
