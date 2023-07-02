@@ -4,7 +4,7 @@ import { ProductService } from '@frontend/app/services/product.service';
 
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
