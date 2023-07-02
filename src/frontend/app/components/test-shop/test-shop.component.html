@@ -1,28 +1,9 @@
-<!-- <div class="row">
-    <div class="clearfix visible-sm"></div>
-    <div class="col-md-2 col-sm-6 col-xs-4 gridtile">Hello</div>
-    <div class="clearfix visible-sm"></div>   umbruch
-
-    <div class="col-md-2 col-sm-6 col-xs-12 gridtile">Col 1</div>
-    <div class="col-md-2 col-sm-6 col-xs-12 gridtile">Col 2</div>
-    <div class="col-md-2 col-sm-6 col-xs-12 gridtile">Col 3</div>
-    <div class="col-md-2 col-sm-6 col-xs-12 gridtile">Col 4</div>
-</div> -->
-
-<!-- <div *ngFor="let product of products; index as i" class="product_card" id="{{product.name}}">   
-<img src="{{product.image}}" alt="{{product.name}}" />
-<ul class="product_icons">
-    <li><a href="#"><i class="bi bi-cart-plus"></i></a></li>
-    <li><a href="#"><i class="bi bi-heart"></i></a></li>
-    <li><a href="#"><i class="bi bi-arrows-angle-expand"></i></a></li>
-</ul> -->
-
 <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="input-group mb-3">
           <input id="searchInput" type="text" placeholder="Search" [(ngModel)]="searchQuery" class="form-control search-input" (input)="filterProducts()" />
-          <button class="btn btn-outline-dark search-button" (click)="filterProducts()">Search</button>
+          <!-- <button class="btn btn-outline-dark search-button" (click)="filterProducts()">Search</button> -->
         </div>
       </div>
     </div>
@@ -35,8 +16,6 @@
         <div class="card-body p-4 flex-grow-1">
           <div class="text-center">
             <h5 class="fw-bolder">{{ product.productName }}</h5>
-            <!-- <div *ngIf="product.discount > 0" class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
-            <!-- <div *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">{{ product.oldprice ?? 1000000 }}<i>€</i></div> -->
             <div class="">{{ product.price }}<i>€</i></div>
             <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
           </div>
@@ -44,105 +23,3 @@
       </div>
     </div>
   </div>
-<!--   
-  <div class="shopping-cart">
-    <table>
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of cartItems">
-          <td>{{ item.name }}</td>
-          <td>
-            <button (click)="decreaseQuantity(item)">-</button>
-            {{ item.quantity }}
-            <button (click)="increaseQuantity(item)">+</button>
-          </td>
-          <td>{{ item.price }}€</td>
-          <td>{{ item.quantity * item.price }}€</td>
-          <td>
-            <button (click)="removeFromCart(item)">Remove</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="cart-total">
-      <h3>Total: {{ calculateTotal() }}<i>€</i></h3>
-      <button (click)="checkout()">Checkout</button>
-    </div>
-  </div>
-  
-  
-   -->
-
-
-<!--
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-sm-5 col-xxl-3 bg-success">
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-            -50€- 35€
-            1kg
-        </div>
-        <div class="col-sm-5 col-xxl-3 bg-warning">
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-            -50€- 35€
-            1kg
-        </div>
-        <div class="col-sm-5 col-xxl-3 bg-success">
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-            -50€- 35€
-            1kg</div>
-        <div class="col-sm-5 col-xxl-3 bg-warning">
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-            -50€- 35€
-            1kg
-        </div>
-    </div>
--->
-
-<!-- <div class="container">
-    <div class="row row-cols-2">
-        <div class="col col-1 col-sm-1 col-md-2 col-lg-2 col-xxl-4">
-            
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-            -50€- 35€
-            1kg
-
-
-        </div>
-        <div class="col col-1 col-sm-1 col-md-2 col-lg-2 col-xxl-4">
-            
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-
-            -50€- 35€
-            1kg
-        </div>
-        <div class="col col-1 col-sm-1 col-md-2 col-lg-2 col-xxl-4">
-            
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-            -50€- 35€
-            1kg
-        </div>
-        <div class="col col-1 col-sm-1 col-md-2 col-lg-2 col-xxl-4">
-             
-            <img src="../../../assets/Images/basil.png">
-            <div class="clearfix visible-sm"></div>
-            -50€- 35€
-            1kg
-        </div>
-    </div>
-  </div> -->
