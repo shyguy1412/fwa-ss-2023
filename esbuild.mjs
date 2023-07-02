@@ -24,8 +24,8 @@ const WATCH = process.argv.includes('--watch');
 const serverContext = await context({
   entryPoints: await glob('src/backend/**/*.ts'),
   outdir: './dist',
-  minify: !WATCH,
-  keepNames: true,
+  // minify: !WATCH,
+  // keepNames: true,
   // bundle: true,
   format: 'cjs',
   platform: 'node',
