@@ -62,12 +62,6 @@ program
       cwd: __dirname,
     });
 
-
-    ipcSocket.on("message", function (msg) {
-      if (msg.toString('utf-8') == 'started')
-        process.exit();
-    });
-
     ipcSocket.bind(port - 1, 'localhost');
 
     //We still gotta get the console output tho
@@ -76,23 +70,4 @@ program
     serverProcess.unref();
   });
 
-program
-  .command('stop')
-  .description('stops the server')
-  .action(() => {
-    const ipcSocket = createSocket('udp4');
-    const port = Number.parseInt(process.env.EXPRESS_PORT ?? 0) || 3000;
-    ipcSocket.send('exit', port + 1, 'localhost', (err) => {
-      console.log(err ?? 'EXITED');
-      process.exit();
-    });
-  });
-
-
-
 program.parse();
-
-
-function spawnServerAndExit() {
-
-}
